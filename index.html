@@ -112,77 +112,96 @@
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
         </div>
     </div>
-    <script>
-    document.getElementById('week2Link').addEventListener('click', function() {
+<script>
+// Ensure the DOM is fully loaded before attaching event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    var week2Link = document.getElementById('week2Link');
+    week2Link.addEventListener('click', function() {
+        console.log("Week2 link clicked"); // Log to console to confirm the click event is captured
         fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
             .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 return response.text();
             })
             .then(html => {
                 document.getElementById('questionsContainer').innerHTML = html;
-                attachEventListeners();
+                attachEventListeners(); // Set up event listeners for the dynamically loaded content
                 initQuestions();
                 document.getElementById('week2').style.display = 'flex';
                 document.querySelector('.navigation').style.display = 'flex';
             })
-            .catch(error => console.error('Error fetching the questions:', error));
+            .catch(error => {
+                console.error('Error fetching the questions:', error); // Log any errors during fetch
+            });
+    });
+});
+
+function attachEventListeners() {
+    // Attach event listeners to hint and solution buttons after content is loaded
+    document.querySelectorAll('[data-hint]').forEach(button => {
+        button.addEventListener('click', function() {
+            const hintId = this.getAttribute('data-hint');
+            showHint(hintId);
+        });
     });
 
-    function attachEventListeners() {
-        document.querySelectorAll('[data-hint]').forEach(button => {
-            button.addEventListener('click', function() {
-                const hintId = button.getAttribute('data-hint');
-                showHint(hintId);
-            });
+    document.querySelectorAll('[data-solution]').forEach(button => {
+        button.addEventListener('click', function() {
+            const solutionId = this.getAttribute('data-solution');
+            showSolution(solutionId);
         });
-        document.querySelectorAll('[data-solution]').forEach(button => {
-            button.addEventListener('click', function() {
-                const solutionId = button.getAttribute('data-solution');
-                showSolution(solutionId);
-            });
-        });
-    }
+    });
+}
 
-    function showHint(hintId) {
-        const hintElement = document.getElementById(hintId);
-        hintElement.style.display = hintElement.style.display === 'none' ? 'block' : 'none';
-    }
+function showHint(hintId) {
+    const hintElement = document.getElementById(hintId);
+    hintElement.style.display = hintElement.style.display === 'none' ? 'block' : 'none';
+}
 
-    function showSolution(solutionId) {
-        const solutionElement = document.getElementById(solutionId);
-        solutionElement.style.display = solutionElement.style.display === 'none' ? 'block' : 'none';
-    }
+function showSolution(solutionId) {
+    const solutionElement = document.getElementById(solutionId);
+    solutionElement.style.display = solutionElement.style.display === 'none' ? 'block' : 'none';
+}
 
-    function initQuestions() {
-        totalQuestions = document.querySelectorAll('.question-frame').length;
+function initQuestions() {
+    var questionFrames = document.querySelectorAll('.question-frame');
+    totalQuestions = questionFrames.length;
+    if(totalQuestions > 0) {
         updateQuestionDisplay();
-        document.querySelector('.navigation').style.display = totalQuestions > 1 ? 'flex' : 'none';
     }
+}
 
-    function updateQuestionDisplay() {
-        for (let i = 1; i <= totalQuestions; i++) {
-            const questionElement = document.getElementById(`question${i}`);
+function updateQuestionDisplay() {
+    for (let i = 1; i <= totalQuestions; i++) {
+        const questionElement = document.getElementById(`question${i}`);
+        if (questionElement) {
             questionElement.style.display = i === currentQuestion ? 'block' : 'none';
         }
-        document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
-        document.getElementById('prevBtn').disabled = currentQuestion === 1;
-        document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
     }
+    document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+    document.getElementById('prevBtn').disabled = currentQuestion === 1;
+    document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
+}
 
-    function prevQuestion() {
-        if (currentQuestion > 1) {
-            currentQuestion--;
-            updateQuestionDisplay();
-        }
-    }
+let currentQuestion = 1;
+let totalQuestions = 0;
 
-    function nextQuestion() {
-        if (currentQuestion < totalQuestions) {
-            currentQuestion++;
-            updateQuestionDisplay();
-        }
+function prevQuestion() {
+    if (currentQuestion > 1) {
+        currentQuestion--;
+        updateQuestionDisplay();
     }
-    </script>
+}
+
+function nextQuestion() {
+    if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        updateQuestionDisplay();
+    }
+}
+</script>
+
 </body>
 </html>
