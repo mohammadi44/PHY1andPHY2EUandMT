@@ -136,18 +136,13 @@
     <!-- Hidden question box for Week 1 -->
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  <!-- Updated heading -->
-
-        <!-- Question frames dynamically populated from JSON -->
-        <div class="question-frame" id="question1"></div>
-        <div class="solution-frame" id="solution1" style="display:none;"></div>
-
-        <div class="question-frame" id="question2" style="display:none;"></div>
-        <div class="solution-frame" id="solution2" style="display:none;"></div>
+        <!-- Questions will be inserted here dynamically -->
+        <div id="questionsContainer"></div>
     </div>
 
     <!-- Hidden Navigation Buttons positioned at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/2</span>
+        <span id="questionNumber" class="current-question">1/3</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -156,15 +151,14 @@
 
     <script>
         let currentQuestion = 1;
-        const totalQuestions = 3;  // Update this to match the number of questions in your JSON data
+        let totalQuestions = 0; // We will update this based on the JSON data
 
         function showQuestions() {
             const questionBox = document.getElementById('week1');
             const navigation = document.querySelector('.navigation');
             questionBox.style.display = 'block'; // Show question box when "Week 1" is clicked
             navigation.style.display = 'flex';  // Show navigation when "Week 1" is clicked
-            loadQuestionsFromJSON();  
-            updateQuestionDisplay();
+            loadQuestionsFromJSON();
         }
 
         function showHint(hintId) {
@@ -204,7 +198,7 @@
             }
         }
 
-        // Function to load questions from the JSON file
+        // Function to load questions from the JSON file and create dynamic HTML
         function loadQuestionsFromJSON() {
             const timestamp = new Date().getTime();  // Add timestamp to prevent caching
             fetch(`week1_questions.json?timestamp=${timestamp}`)  // Cache busting with timestamp
@@ -215,12 +209,22 @@
                 return response.json();
             })
             .then(data => {
-                // Populate each question, hint, and solution based on the JSON data
+                // Count the number of questions in the JSON
+                totalQuestions = Object.keys(data).length;
+                
+                // Get the questions container element
+                const questionsContainer = document.getElementById('questionsContainer');
+                questionsContainer.innerHTML = '';  // Clear existing questions
+
+                // Dynamically generate question elements
                 for (let i = 1; i <= totalQuestions; i++) {
-                    const question = data[i];  // Access question i from the JSON
+                    const question = data[i];
                     if (question) {
-                        // Populate question
-                        document.getElementById(`question${i}`).innerHTML = `
+                        // Create question frame
+                        const questionFrame = document.createElement('div');
+                        questionFrame.classList.add('question-frame');
+                        questionFrame.id = `question${i}`;
+                        questionFrame.innerHTML = `
                             <p><strong>Question:</strong> ${question.question}</p>
                             <div class="buttons">
                                 <button onclick="showHint('hint${i}')">Show Hint</button>
@@ -228,11 +232,20 @@
                             </div>
                             <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
                         `;
+                        questionsContainer.appendChild(questionFrame);
 
-                        // Populate solution
-                        document.getElementById(`solution${i}`).innerHTML = `<strong>Solution:</strong> ${question.solution}`;
+                        // Create solution frame
+                        const solutionFrame = document.createElement('div');
+                        solutionFrame.classList.add('solution-frame');
+                        solutionFrame.id = `solution${i}`;
+                        solutionFrame.style.display = 'none';
+                        solutionFrame.innerHTML = `<strong>Solution:</strong> ${question.solution}`;
+                        questionsContainer.appendChild(solutionFrame);
                     }
                 }
+
+                // Set initial question display
+                updateQuestionDisplay();
             })
             .catch(error => console.error("Error loading the questions data:", error));
         }
