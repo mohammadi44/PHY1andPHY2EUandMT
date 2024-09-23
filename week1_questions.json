@@ -5,7 +5,7 @@
         "solution": "Die Energie (c) ist keine Grundgrösse. Ihre Einheit Joule ist zusammengesetzt aus Länge, Masse, Zeit. [J] = kg m²/s²"
     },
     "2": {
-        "question": "Wie viele signifikante Stellen haben die folgenden Dezimalzahlen:\na) 0.0005130?\nb) 100\nc) 10E2",
+        "question": "Wie viele signifikante Stellen haben die folgenden Dezimalzahlen:\na) 0.0005130\nb) 100\nc) 10E2",
         "hint": "Hint",
         "solution": "a) 4 signifikante Stellen 5,1,3,0\nb) 3 (1,0,0)\nc) 2 (1,0)"
     },
@@ -13,5 +13,25 @@
         "question": "In den folgenden Gleichungen wird die Strecke x in Metern, die Zeit t in Sekunden und die Geschwindigkeit v in Metern pro Sekunde angegeben. Welche SI-Einheiten haben jeweils die Konstanten C1 und C2?\na) x = C1 +C2 t\nb) x = 1/2 C1 t2\nc) v2 = 2 C1 x\nd) x = C1 cos (C2 t)\ne) v2 = 2 C1 v − (C2 x)2.",
         "hint": "Hint",
         "solution": "a) m , m/s\nb) m/s²\nc) m/s²\nd) m, 1/s\ne) m/s, 1/s"
+    },
+    "4": {
+        "question": "Das Zeitgesetz für den radioaktiven Zerfall lautet , wobei n0 die Anzahl der radioaktiven Kerne zur Zeit t = 0, n(t) die Anzahl der davon zum Zeitpunkt t verbliebenen Kerne und λ die sogenannte Zerfallskonstante ist. Welche Dimension hat λ?",
+        "hint": "Hint",
+        "solution": "Im Exponenten darf nur eine reine Zahl stehen, also ist [λ] = 1/s"
+    },
+    "5": {
+        "question": "Der Impuls eines Körpers ist das Produkt aus seiner Geschwindigkeit und seiner Masse. Zeigen Sie, dass der Impuls die Dimension Kraft mal Zeit hat.",
+        "hint": "Hint",
+        "solution": "Die Einheit des Impulses ist\nWir erweitern mit Sekunden:\nDas Resultat ist die Dimension einer Kraft (Newton) mal die Dimension der Zeit"
+    },
+    "6": {
+        "question": "Ein Körper, der in einem dickflüssigen Öl langsam fällt, erfährt dabei eine Reibungskraft .\n(a) Was ist die Einheit der Viskosität η (eta) ausgedrückt in SI-Grundeinheiten.\n(b) Zeigen Sie, dass diese Einheit gleich der Einheit des Drucks (Pascal) mal einer Zeit ist.",
+        "hint": "Hint",
+        "solution": "Auflösen nach  und Einheiten einsetzen. 6 und π haben Einheit 1.\n\n, das Gleiche wie oben"
+    },
+    "7": {
+        "question": "Drücken Sie folgende Werte in der jeweils zusätzlich angegebenen Einheit in der Exponentialschreibweise aExx aus. Behalten Sie die Anzahl der signifikanten Stellen bei.\n(a) 1 345 100 m = __  km\n(b) 12 340.0 kW = __ MW\n(c) 54,32 ms = __ s,\n(d) 3,0 m = __ mm.\n(e) 0.1 km = __ m",
+        "hint": "Hint",
+        "solution": "(a) 1.345100E3 km (nicht 1345.1, hier fehlen zwei Stellen am Schluss)\n(b) 1.2340.0E1 = 12.3400 MW\n(c) 54.23E-3 s\n(d) 3.0E3 mm\n(e) 1E2 m (nicht 100 m, das wären 3 signifikante Stellen statt nur einer.\n"
     }
 }
