@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Questions - Week 1</title>
+    <title>PHY1 Interactive Questions</title>
     <style>
         /* General page layout */
         body {
@@ -13,6 +13,14 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+        }
+
+        /* Title styling */
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
         }
 
         /* Link positioned at the top-left corner */
@@ -119,12 +127,15 @@
 </head>
 <body>
 
+    <!-- Bold title at the top -->
+    <div class="title">PHY1</div>
+
     <!-- Link to Week 1 positioned at the top-left -->
     <span class="link" onclick="showQuestions()">Week 1</span>
 
     <!-- Hidden question box for Week 1 -->
     <div id="week1" class="question-box">
-        <h2>Physik Grundlagen</h2>
+        <h2>Physik Grundlagen</h2>  <!-- Updated heading -->
 
         <!-- Question frames dynamically populated from JSON -->
         <div class="question-frame" id="question1"></div>
