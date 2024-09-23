@@ -36,24 +36,14 @@
             border: 2px solid #ccc;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-            display: flex;
+            display: none; /* Hidden initially */
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
         }
 
-        /* Black frame for question */
-        .question-frame {
-            border: 2px solid black;
-            padding: 20px;
-            background-color: white;
-            margin-top: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Separate black frame for solution */
-        .solution-frame {
+        /* Black frame for question, hint, and solution */
+        .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
             background-color: white;
@@ -63,7 +53,6 @@
         }
 
         .hint {
-            margin-top: 10px;
             font-style: italic;
             color: #666;
         }
@@ -80,7 +69,7 @@
 
         /* Navigation positioned at the bottom of the page */
         .navigation {
-            display: flex;
+            display: none; /* Initially hidden */
             justify-content: space-between;
             align-items: center;
             padding: 20px;
@@ -107,13 +96,24 @@
             margin-top: 20px;
         }
 
+        /* Initially hidden */
         .hidden {
             display: none;
         }
 
-        /* Hint and solution are initially hidden */
+        /* Initially hide the hint and solution */
         .hint, .solution {
             display: none;
+        }
+
+        /* Link to show Week 1 */
+        .link {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: underline;
+            color: blue;
         }
     </style>
 </head>
@@ -122,36 +122,45 @@
     <!-- Bold title at the top -->
     <div class="title">PHY1</div>
 
+    <!-- Link to Week 1 -->
+    <div class="link" id="week1Link" onclick="showQuestions()">Week 1</div>
+
     <!-- Question box for Week 1 -->
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
-            <!-- Copy the Python-generated content directly here -->
-            <div class='question-frame' id='question1'>
-                <p><strong>Aufgabe:</strong> Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem? <br>(a) Masse<br>(b) Länge <br>(c) Energie,<br>(d) Zeit <br>(e) alle genannten Größen sind solche Grundgrössen</p>
-                <div class='buttons'><button onclick="showHint('hint1')">Show Hint</button></div>
-                <div id='hint1' class='hint'><strong>Hint:</strong> Hint</div>
-                <div class='buttons'><button onclick="showSolution('solution1')">Show Lösung</button></div>
-                <div id='solution1' class='solution'><strong>Lösung:</strong> Die Energie (c) ist keine Grundgrösse. Ihre Einheit Joule ist zusammengesetzt aus Länge, Masse, Zeit. [J] = kg m²/s²</div>
-            </div>
-            
-            <!-- Repeat this block for other questions -->
-
-            <div class='question-frame' id='question2'>
-                <p><strong>Aufgabe:</strong> Wie viele signifikante Stellen haben die folgenden Dezimalzahlen:<br>(a) 0.0005130<br>(b) 100<br>(c) 10E2</p>
-                <div class='buttons'><button onclick="showHint('hint2')">Show Hint</button></div>
-                <div id='hint2' class='hint'><strong>Hint:</strong> Hint</div>
-                <div class='buttons'><button onclick="showSolution('solution2')">Show Lösung</button></div>
-                <div id='solution2' class='solution'><strong>Lösung:</strong> (a) 4 signifikante Stellen 5,1,3,0<br>(b) 3 (1,0,0)<br>(c) 2 (1,0)</div>
+            <!-- Example content -->
+            <div class="question-frame" id="question1">
+                <p><strong>Aufgabe:</strong> Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem? <br>
+                    (a) Masse<br>(b) Länge<br>(c) Energie<br>(d) Zeit<br>(e) alle genannten Größen sind solche Grundgrössen
+                </p>
+                <div class="buttons">
+                    <button onclick="showHint('hint1')">Show Hint</button>
+                    <button onclick="showSolution('solution1')">Show Lösung</button>
+                </div>
+                <div id="hint1" class="hint-frame hint"><strong>Hint:</strong> Die Energie (c) ist keine Grundgrösse.</div>
+                <div id="solution1" class="solution-frame solution"><strong>Lösung:</strong> Die Einheit Joule ist zusammengesetzt aus Länge, Masse, Zeit.</div>
             </div>
 
-            <!-- Continue for the rest of the questions -->
+            <div class="question-frame" id="question2" style="display:none">
+                <p><strong>Aufgabe:</strong> Wie viele signifikante Stellen haben die folgenden Dezimalzahlen?<br>
+                    (a) 0.0005130<br>(b) 100<br>(c) 10E2
+                </p>
+                <div class="buttons">
+                    <button onclick="showHint('hint2')">Show Hint</button>
+                    <button onclick="showSolution('solution2')">Show Lösung</button>
+                </div>
+                <div id="hint2" class="hint-frame hint"><strong>Hint:</strong> Es sind 4 signifikante Stellen in 0.0005130.</div>
+                <div id="solution2" class="solution-frame solution"><strong>Lösung:</strong> (a) 4 signifikante Stellen, (b) 3, (c) 2</div>
+            </div>
+
+            <!-- Add more questions as needed -->
         </div>
     </div>
 
     <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/1</span>
+        <span id="questionNumber" class="current-question">1/2</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -160,7 +169,18 @@
 
     <script>
         let currentQuestion = 1;
-        let totalQuestions = 0;
+        let totalQuestions = 2;
+
+        function showQuestions() {
+            // Show the question box and navigation
+            document.getElementById('week1').style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            
+            // Hide the link after it's clicked
+            document.getElementById('week1Link').style.display = 'none';
+            
+            updateQuestionDisplay();  // Show the first question
+        }
 
         function showHint(hintId) {
             const hint = document.getElementById(hintId);
@@ -196,15 +216,6 @@
                 updateQuestionDisplay();
             }
         }
-
-        // Initialize questions based on the generated HTML content
-        function initQuestions() {
-            totalQuestions = document.querySelectorAll('.question-frame').length;
-            updateQuestionDisplay();
-        }
-
-        // Call initQuestions on window load to set up the navigation
-        window.onload = initQuestions;
     </script>
 
 </body>
