@@ -42,7 +42,7 @@
             align-items: flex-start;
         }
 
-        /* Frames for question, hint, and solution */
+        /* Frame for question, hint, and solution */
         .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
@@ -125,12 +125,7 @@
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
-            <!-- This is where the Python-generated content goes -->
-            <div class="question-frame" id="question1">Sample Question 1</div>
-            <div class="hint-frame" id="hint1">Hint for Question 1</div>
-            <div class="solution-frame" id="solution1">Solution for Question 1</div>
-
-            <!-- Additional questions, hints, and solutions can be added here -->
+            <!-- Questions, hints, and solutions will be loaded here -->
         </div>
     </div>
 
@@ -145,26 +140,27 @@
 
     <script>
         let currentQuestion = 1;
-        let totalQuestions = 1; // Initially set to 1 for the sample content
+        let totalQuestions = 0;
 
         function showQuestions() {
-            // Show the question box and navigation
-            document.getElementById('week1').style.display = 'flex'; // Changed to 'flex' to display the box
-            document.querySelector('.navigation').style.display = 'flex';
-            
-            // Hide the link after it's clicked
-            document.getElementById('week1Link').style.display = 'none';
-            
-            updateQuestionDisplay();  // Show the first question
+            fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('questionsContainer').innerHTML = html;
+                    initQuestions();  // Initialize the questions once they are loaded
+                    document.getElementById('week1').style.display = 'flex'; // Display the question box
+                    document.querySelector('.navigation').style.display = 'flex'; // Show the navigation bar
+                });
+            document.getElementById('week1Link').style.display = 'none'; // Hide the link after it's clicked
         }
 
-        function showHint() {
-            const hint = document.getElementById('hint' + currentQuestion);
+        function showHint(hintId) {
+            const hint = document.getElementById(hintId);
             hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
         }
 
-        function showSolution() {
-            const solution = document.getElementById('solution' + currentQuestion);
+        function showSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
             solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
         }
 
@@ -172,9 +168,9 @@
             // Ensure all questions are properly hidden or shown
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionElement = document.getElementById(`question${i}`);
-                questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
-                document.getElementById(`hint${i}`).style.display = 'none'; // Hide hints
-                document.getElementById(`solution${i}`).style.display = 'none'; // Hide solutions
+                if (questionElement) {
+                    questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
+                }
             }
 
             // Update question counter and disable/enable navigation buttons
@@ -202,12 +198,7 @@
             // Calculate the total number of question frames dynamically
             totalQuestions = document.querySelectorAll('.question-frame').length;
             updateQuestionDisplay();
-        }
-
-        // Call initQuestions on window load to set up the navigation
-        window.onload = function() {
-            initQuestions();  // Dynamically calculate total questions
-            document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
+            document.querySelector('.navigation').style.display = (totalQuestions > 1) ? 'flex' : 'none';  // Show/hide navigation
         }
     </script>
 
