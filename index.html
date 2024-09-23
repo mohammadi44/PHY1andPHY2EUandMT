@@ -2,24 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Questions and Answers</title>
+<title>Week 2 Questions</title>
 <style>
     .question-frame, .hint, .solution {
+        border: 1px solid #ccc;
+        padding: 10px;
         margin-bottom: 20px;
+        display: none; /* Initially hide all components */
     }
-    .hint, .solution {
-        display: none;  /* Initially hide hints and solutions */
+    #woche2-link {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
     }
 </style>
 </head>
 <body>
+<div>
+    <span id="woche2-link">Woche2</span>
+</div>
 <div id="content">
-    <!-- Questions will be loaded here -->
+    <!-- Questions, hints, and solutions will be loaded here -->
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const contentDiv = document.getElementById('content');
+    const woche2Link = document.getElementById('woche2-link');
 
     // Function to fetch HTML content from GitHub
     async function fetchQuestions() {
@@ -31,29 +40,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const html = await response.text();
         contentDiv.innerHTML = html;
         attachEventListeners();
+        displayFirstQuestionOnly();
     }
 
     // Function to attach event listeners to buttons after content is loaded
     function attachEventListeners() {
-        const hintButtons = document.querySelectorAll('button[data-hint]');
-        const solutionButtons = document.querySelectorAll('button[data-solution]');
-
-        hintButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const hintId = button.getAttribute('data-hint');
-                document.getElementById(hintId).style.display = 'block';
-            });
-        });
-
-        solutionButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const solutionId = button.getAttribute('data-solution');
-                document.getElementById(solutionId).style.display = 'block';
+        document.querySelectorAll('.question-frame button').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = button.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                targetElement.style.display = 'block'; // Show the hint or solution
             });
         });
     }
 
-    fetchQuestions();
+    // Function to display only the first question initially
+    function displayFirstQuestionOnly() {
+        const firstQuestionFrame = document.querySelector('.question-frame');
+        if (firstQuestionFrame) {
+            firstQuestionFrame.style.display = 'block'; // Show only the first question
+        }
+    }
+
+    // Event listener for the Woche2 link
+    woche2Link.addEventListener('click', function() {
+        fetchQuestions(); // Load the questions when Woche2 is clicked
+        woche2Link.style.display = 'none'; // Optionally hide the link after loading
+    });
 });
 </script>
 </body>
