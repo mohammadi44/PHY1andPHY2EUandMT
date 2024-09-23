@@ -1,91 +1,188 @@
-/* General page layout */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY1 Interactive Questions</title>
+    <style>
+        /* General page layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .question-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+            max-width: 900px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: none; /* Hidden initially */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        /* Frame for question, hint, and solution */
+        .question-frame, .hint-frame, .solution-frame {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: white;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+        .hint, .solution {
+            display: none;
+            font-style: italic;
+            color: #666;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .navigation {
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            border-top: 2px solid #ccc;
+            box-sizing: border-box;
+            display: none; /* Initially hidden */
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .current-question {
+            font-weight: bold;
+        }
+        .link {
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: underline;
+            color: blue;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">PHY1</div>
+    <div class="link" id="week2Link">Woche 2</div>
+    <div id="week2" class="question-box">
+        <h2>Physik Grundlagen</h2>  
+        <div id="questionsContainer"></div>
+    </div>
+    <div class="navigation">
+        <span id="questionNumber" class="current-question">1/1</span>
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+    <script>
+    document.getElementById('week2Link').addEventListener('click', function() {
+        fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('questionsContainer').innerHTML = html;
+                attachEventListeners();
+                initQuestions();
+                document.getElementById('week2').style.display = 'flex';
+                document.querySelector('.navigation').style.display = 'flex';
+            })
+            .catch(error => console.error('Error fetching the questions:', error));
+    });
 
-.title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-}
+    function attachEventListeners() {
+        document.querySelectorAll('[data-hint]').forEach(button => {
+            button.addEventListener('click', function() {
+                const hintId = button.getAttribute('data-hint');
+                showHint(hintId);
+            });
+        });
+        document.querySelectorAll('[data-solution]').forEach(button => {
+            button.addEventListener('click', function() {
+                const solutionId = button.getAttribute('data-solution');
+                showSolution(solutionId);
+            });
+        });
+    }
 
-.question-box {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-top: 20px;
-    flex-grow: 1;
-    max-width: 900px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    display: none; /* Hidden initially */
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
+    function showHint(hintId) {
+        const hintElement = document.getElementById(hintId);
+        hintElement.style.display = hintElement.style.display === 'none' ? 'block' : 'none';
+    }
 
-/* Frame for question, hint, and solution */
-.question-frame, .hint-frame, .solution-frame {
-    border: 2px solid black;
-    padding: 20px;
-    background-color: white;
-    margin-top: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
+    function showSolution(solutionId) {
+        const solutionElement = document.getElementById(solutionId);
+        solutionElement.style.display = solutionElement.style.display === 'none' ? 'block' : 'none';
+    }
 
-.hint-frame, .solution-frame {
-    font-family: Arial, sans-serif; /* Same font as questions */
-    font-size: 16px; /* Adjust size as needed */
-    color: #333; /* Standard text color for readability */
-}
+    function initQuestions() {
+        totalQuestions = document.querySelectorAll('.question-frame').length;
+        updateQuestionDisplay();
+        document.querySelector('.navigation').style.display = totalQuestions > 1 ? 'flex' : 'none';
+    }
 
-.hint, .solution {
-    display: none;
-    font-style: italic;
-    color: #666;
-}
+    function updateQuestionDisplay() {
+        for (let i = 1; i <= totalQuestions; i++) {
+            const questionElement = document.getElementById(`question${i}`);
+            questionElement.style.display = i === currentQuestion ? 'block' : 'none';
+        }
+        document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+        document.getElementById('prevBtn').disabled = currentQuestion === 1;
+        document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
+    }
 
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
+    function prevQuestion() {
+        if (currentQuestion > 1) {
+            currentQuestion--;
+            updateQuestionDisplay();
+        }
+    }
 
-button {
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-
-.navigation {
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f9f9f9;
-    border-top: 2px solid #ccc;
-    box-sizing: border-box;
-    display: none; /* Initially hidden */
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.current-question {
-    font-weight: bold;
-}
+    function nextQuestion() {
+        if (currentQuestion < totalQuestions) {
+            currentQuestion++;
+            updateQuestionDisplay();
+        }
+    }
+    </script>
+</body>
+</html>
