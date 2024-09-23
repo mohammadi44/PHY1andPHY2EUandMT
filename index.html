@@ -225,10 +225,10 @@
                         questionFrame.classList.add('question-frame');
                         questionFrame.id = `question${i}`;
                         questionFrame.innerHTML = `
-                            <p><strong>Question:</strong> ${question.question}</p>
+                            <p><strong>Aufgabe:</strong> ${question.question}</p>
                             <div class="buttons">
                                 <button onclick="showHint('hint${i}')">Show Hint</button>
-                                <button onclick="showSolution('solution${i}')">Show Solution</button>
+                                <button onclick="showSolution('solution${i}')">Show Lösung</button>
                             </div>
                             <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
                         `;
@@ -239,7 +239,7 @@
                         solutionFrame.classList.add('solution-frame');
                         solutionFrame.id = `solution${i}`;
                         solutionFrame.style.display = 'none';
-                        solutionFrame.innerHTML = `<strong>Solution:</strong> ${question.solution}`;
+                        solutionFrame.innerHTML = `<strong>Lösung:</strong> ${question.solution}`;
                         questionsContainer.appendChild(solutionFrame);
                     }
                 }
