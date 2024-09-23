@@ -188,36 +188,39 @@
         }
 
         // Function to load questions from the JSON file
-        function loadQuestionsFromJSON() {
-            fetch('week1_questions.json')  // Assuming JSON is in the same directory
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Populate each question, hint, and solution based on the JSON data
-                for (let i = 1; i <= totalQuestions; i++) {
-                    const question = data[i];  // Access question i from the JSON
-                    if (question) {
-                        // Populate question
-                        document.getElementById(`question${i}`).innerHTML = `
-                            <p><strong>Question:</strong> ${question.question}</p>
-                            <div class="buttons">
-                                <button onclick="showHint('hint${i}')">Show Hint</button>
-                                <button onclick="showSolution('solution${i}')">Show Solution</button>
-                            </div>
-                            <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
-                        `;
-
-                        // Populate solution
-                        document.getElementById(`solution${i}`).innerHTML = `<strong>Solution:</strong> ${question.solution}`;
-                    }
-                }
-            })
-            .catch(error => console.error("Error loading the questions data:", error));
+        // Function to load questions from the JSON file with cache busting
+function loadQuestionsFromJSON() {
+    const timestamp = new Date().getTime();  // Generate a timestamp
+    fetch(`week1_questions.json?timestamp=${timestamp}`)  // Append timestamp to the URL to prevent caching
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
         }
+        return response.json();
+    })
+    .then(data => {
+        // Populate each question, hint, and solution based on the JSON data
+        for (let i = 1; i <= totalQuestions; i++) {
+            const question = data[i];  // Access question i from the JSON
+            if (question) {
+                // Populate question
+                document.getElementById(`question${i}`).innerHTML = `
+                    <p><strong>Question:</strong> ${question.question}</p>
+                    <div class="buttons">
+                        <button onclick="showHint('hint${i}')">Show Hint</button>
+                        <button onclick="showSolution('solution${i}')">Show Solution</button>
+                    </div>
+                    <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
+                `;
+
+                // Populate solution
+                document.getElementById(`solution${i}`).innerHTML = `<strong>Solution:</strong> ${question.solution}`;
+            }
+        }
+    })
+    .catch(error => console.error("Error loading the questions data:", error));
+}
+
     </script>
 
 </body>
