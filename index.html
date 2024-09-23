@@ -23,18 +23,6 @@
             margin-top: 20px;
         }
 
-        /* Link positioned at the top-left corner */
-        .link {
-            margin: 20px;
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-            font-size: 18px;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
         /* Question box styling */
         .question-box {
             background-color: #f9f9f9;
@@ -118,6 +106,15 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Hint and solution are initially hidden */
+        .hint, .solution {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -125,31 +122,30 @@
     <!-- Bold title at the top -->
     <div class="title">PHY1</div>
 
-    <!-- Hidden question box for Week 1 -->
+    <!-- Question box for Week 1 -->
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
-        <!-- Questions content will already be in HTML format -->
         <div id="questionsContainer">
-            <!-- The Python-generated HTML content will be inserted here -->
-            <!-- Example structure:
+            <!-- Python-generated content will go here -->
+            <!-- For example:
             <div class="question-frame" id="question1">
                 <p><strong>Aufgabe:</strong> Which of the following...</p>
                 <div class="buttons">
                     <button onclick="showHint('hint1')">Show Hint</button>
                     <button onclick="showSolution('solution1')">Show Lösung</button>
                 </div>
-                <div id="hint1" class="hint" style="display:none;"><strong>Hint:</strong> Some hint</div>
+                <div id="hint1" class="hint"><strong>Hint:</strong> Some hint text</div>
             </div>
-            <div class="solution-frame" id="solution1" style="display:none;">
-                <strong>Lösung:</strong> The solution is...
+            <div class="solution-frame" id="solution1">
+                <strong>Lösung:</strong> Solution text goes here.
             </div>
             -->
         </div>
     </div>
 
-    <!-- Hidden Navigation Buttons positioned at the bottom -->
+    <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/3</span>
+        <span id="questionNumber" class="current-question">1/1</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -162,20 +158,18 @@
 
         function showHint(hintId) {
             const hint = document.getElementById(hintId);
-            hint.style.display = (hint.style.display === 'none') ? 'block' : 'none';
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
         }
 
         function showSolution(solutionId) {
             const solution = document.getElementById(solutionId);
-            solution.style.display = (solution.style.display === 'none') ? 'block' : 'none';
+            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
         }
 
         function updateQuestionDisplay() {
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionElement = document.getElementById(`question${i}`);
-                const solutionElement = document.getElementById(`solution${i}`);
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
-                solutionElement.style.display = 'none';  
             }
 
             document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
@@ -197,13 +191,13 @@
             }
         }
 
-        // Function to set total questions based on the generated HTML content
+        // Initialize questions based on the generated HTML content
         function initQuestions() {
             totalQuestions = document.querySelectorAll('.question-frame').length;
             updateQuestionDisplay();
         }
 
-        // Initialize questions on page load
+        // Call initQuestions on window load to set up the navigation
         window.onload = initQuestions;
     </script>
 
