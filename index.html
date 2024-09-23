@@ -42,7 +42,7 @@
             align-items: flex-start;
         }
 
-        /* Frame for question, hint, and solution */
+        /* Frames for question, hint, and solution */
         .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
@@ -72,7 +72,6 @@
 
         /* Navigation positioned at the bottom of the page */
         .navigation {
-            display: none; /* Initially hidden */
             justify-content: space-between;
             align-items: center;
             padding: 20px;
@@ -127,7 +126,11 @@
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
             <!-- This is where the Python-generated content goes -->
-            <!-- Make sure the output of the Python script goes here -->
+            <div class="question-frame" id="question1">Sample Question 1</div>
+            <div class="hint-frame" id="hint1">Hint for Question 1</div>
+            <div class="solution-frame" id="solution1">Solution for Question 1</div>
+
+            <!-- Additional questions, hints, and solutions can be added here -->
         </div>
     </div>
 
@@ -142,11 +145,11 @@
 
     <script>
         let currentQuestion = 1;
-        let totalQuestions = 0;
+        let totalQuestions = 1; // Initially set to 1 for the sample content
 
         function showQuestions() {
             // Show the question box and navigation
-            document.getElementById('week1').style.display = 'block';
+            document.getElementById('week1').style.display = 'flex'; // Changed to 'flex' to display the box
             document.querySelector('.navigation').style.display = 'flex';
             
             // Hide the link after it's clicked
@@ -155,13 +158,13 @@
             updateQuestionDisplay();  // Show the first question
         }
 
-        function showHint(hintId) {
-            const hint = document.getElementById(hintId);
+        function showHint() {
+            const hint = document.getElementById('hint' + currentQuestion);
             hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
         }
 
-        function showSolution(solutionId) {
-            const solution = document.getElementById(solutionId);
+        function showSolution() {
+            const solution = document.getElementById('solution' + currentQuestion);
             solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
         }
 
@@ -170,6 +173,8 @@
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionElement = document.getElementById(`question${i}`);
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
+                document.getElementById(`hint${i}`).style.display = 'none'; // Hide hints
+                document.getElementById(`solution${i}`).style.display = 'none'; // Hide solutions
             }
 
             // Update question counter and disable/enable navigation buttons
