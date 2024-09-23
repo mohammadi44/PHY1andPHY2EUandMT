@@ -1,17 +1,17 @@
 {
     "1": {
-        "question": "a) Masse\nb) L\u00e4nge\nc) Energie,\nd) Zeit\ne) alle genannten Gr\u00f6\u00dfen sind solche Grundgr\u00f6ssen",
+        "question": "Welche der folgenden physikalischen Gr\u00f6ssen ist keine Grundgr\u00f6sse im SI-Einheitensystem?\na) Masse\nb) L\u00e4nge\nc) Energie,\nd) Zeit\ne) alle genannten Gr\u00f6\u00dfen sind solche Grundgr\u00f6ssen",
         "hint": "",
-        "solution": ""
+        "solution": "Die Energie (c) ist keine Grundgr\u00f6sse. Ihre Einheit Joule ist zusammengesetzt aus L\u00e4nge, Masse, Zeit. [J] = kg m\u00b2/s\u00b2"
     },
     "2": {
-        "question": "a) 0.0005130?\nb) 100\nc) 10E2",
+        "question": "Wie viele signifikante Stellen haben die folgenden Dezimalzahlen:\na) 0.0005130?\nb) 100\nc) 10E2",
         "hint": "",
-        "solution": "(b) 3 (1,0,0)\n(c) 2 (1,0)"
+        "solution": "b) 3 (1,0,0)\nc) 2 (1,0)"
     },
     "3": {
-        "question": "a) x = C1 +C2 t\nb) x = 1/2 C1 t2\nc) v2 = 2 C1 x\nd) x = C1 cos (C2 t)\ne) v2 = 2 C1 v \u2212 (C2 x)2.",
+        "question": "In den folgenden Gleichungen wird die Strecke x in Metern, die Zeit t in Sekunden und die Geschwindigkeit v in Metern pro Sekunde angegeben. Welche SI-Einheiten haben jeweils die Konstanten C1 und C2?\na) x = C1 +C2 t\nb) x = 1/2 C1 t2\nc) v2 = 2 C1 x\nd) x = C1 cos (C2 t)\ne) v2 = 2 C1 v \u2212 (C2 x)2.",
         "hint": "",
-        "solution": "b) m/s\u00b2\nc) m/s\u00b2\nd) m, 1/s\ne) m/s, 1/s"
+        "solution": "a) m , m/s\nb) m/s\u00b2\nc) m/s\u00b2\nd) m, 1/s\ne) m/s, 1/s"
     }
 }
