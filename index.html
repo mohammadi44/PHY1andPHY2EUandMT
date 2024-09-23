@@ -5,139 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHY1 Interactive Questions</title>
     <style>
-        /* General page layout */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        /* Title styling */
-        .title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        /* Question box styling */
-        .question-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin-top: 60px;
-            flex-grow: 1;
-            max-width: 900px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            border: 2px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            display: none; /* Hidden initially */
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-
-        /* Black frame for question, hint, and solution */
-        .question-frame, .hint-frame, .solution-frame {
-            border: 2px solid black;
-            padding: 20px;
-            background-color: white;
-            margin-top: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .hint {
-            font-style: italic;
-            color: #666;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        /* Navigation positioned at the bottom of the page */
-        .navigation {
-            display: none; /* Initially hidden */
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f9f9f9;
-            border-top: 2px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .current-question {
-            font-weight: bold;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* Initially hidden */
-        .hidden {
-            display: none;
-        }
-
-        /* Initially hide the hint and solution */
-        .hint, .solution {
-            display: none;
-        }
-
-        /* Link to show Week 1 */
-        .link {
-            margin-top: 20px;
-            margin-left: 20px; /* Move to the very left */
-            font-size: 20px;
-            text-align: left; /* Align left */
-            cursor: pointer;
-            text-decoration: underline;
-            color: blue;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
+        /* Add your CSS styles here */
     </style>
 </head>
 <body>
 
-    <!-- Bold title at the top -->
     <div class="title">PHY1</div>
-
-    <!-- Link to Week 1 -->
     <div class="link" id="week1Link" onclick="showQuestions()">Woche 2</div>
-
-    <!-- Question box for Week 1 -->
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
-        <div id="questionsContainer">
-            <!-- Questions will be loaded here -->
-        </div>
+        <div id="questionsContainer"></div>
     </div>
-
-    <!-- Navigation Buttons at the bottom -->
+    
     <div class="navigation">
         <span id="questionNumber" class="current-question">1/0</span>
         <div class="nav-buttons">
@@ -151,35 +30,26 @@
         let totalQuestions = 0;
 
         function showQuestions() {
-            // Show the question box and navigation
             document.getElementById('week1').style.display = 'block';
             document.querySelector('.navigation').style.display = 'flex';
-            
-            // Hide the link after it's clicked
             document.getElementById('week1Link').style.display = 'none';
-            
-            loadQuestions();  // Load questions dynamically
+            loadQuestions();
         }
 
         function loadQuestions() {
-            fetch('Week1_questions.html')  // Update with the correct path if needed
-                .then(response => response.text())
+            fetch('Week1_questions.html') // Adjust the path if necessary
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.text();
+                })
                 .then(data => {
                     document.getElementById('questionsContainer').innerHTML = data;
                     totalQuestions = document.querySelectorAll('.question-frame').length;
-                    updateQuestionDisplay();  // Show the first question
+                    updateQuestionDisplay();
                 })
                 .catch(error => console.error('Error loading questions:', error));
-        }
-
-        function showHint(hintId) {
-            const hint = document.getElementById(hintId);
-            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function showSolution(solutionId) {
-            const solution = document.getElementById(solutionId);
-            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
         }
 
         function updateQuestionDisplay() {
@@ -187,7 +57,6 @@
                 const questionElement = document.getElementById(`question${i}`);
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
             }
-
             document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
             document.getElementById('prevBtn').disabled = (currentQuestion === 1);
             document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
@@ -207,7 +76,6 @@
             }
         }
 
-        // Call this function on window load to set up the navigation
         window.onload = function() {
             document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
         }
