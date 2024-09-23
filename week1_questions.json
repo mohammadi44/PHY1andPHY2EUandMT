@@ -1,6 +1,6 @@
 {
     "1": {
-        "question": "Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem?\n(a) Masse\n(b) Länge \n(c) Energie,\n(d) Zeit \n(e) alle genannten Größen sind solche Grundgrössen",
+        "question": "Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem? \n(a) Masse\n(b) Länge \n(c) Energie,\n(d) Zeit \n(e) alle genannten Größen sind solche Grundgrössen",
         "hint": "Hint",
         "solution": "Die Energie (c) ist keine Grundgrösse. Ihre Einheit Joule ist zusammengesetzt aus Länge, Masse, Zeit. [J] = kg m²/s²"
     },
