@@ -133,7 +133,7 @@
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
-            <!-- Example content -->
+            <!-- Generated content starts here -->
             <div class="question-frame" id="question1">
                 <p><strong>Aufgabe:</strong> Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem? <br>
                     (a) Masse<br>(b) Länge<br>(c) Energie<br>(d) Zeit<br>(e) alle genannten Größen sind solche Grundgrössen
@@ -158,13 +158,74 @@
                 <div id="solution2" class="solution-frame solution"><strong>Lösung:</strong> (a) 4 signifikante Stellen, (b) 3, (c) 2</div>
             </div>
 
-            <!-- Additional questions go here -->
+            <div class="question-frame" id="question3" style="display:none">
+                <p><strong>Aufgabe:</strong> In den folgenden Gleichungen wird die Strecke x in Metern, die Zeit t in Sekunden und die Geschwindigkeit v in Metern pro Sekunde angegeben. Welche SI-Einheiten haben jeweils die Konstanten C1 und C2?<br>
+                    (a) x = C1 +C2 t<br>(b) x = 1/2 C1 t2<br>(c) v2 = 2 C1 x<br>(d) x = C1 cos (C2 t)<br>(e) v2 = 2 C1 v − (C2 x)2.
+                </p>
+                <div class="buttons">
+                    <button onclick="showHint('hint3')">Show Hint</button>
+                    <button onclick="showSolution('solution3')">Show Lösung</button>
+                </div>
+                <div id="hint3" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution3" class="solution-frame solution"><strong>Lösung:</strong> (a) m , m/s<br>(b) m/s²<br>(c) m/s²<br>(d) m, 1/s<br>(e) m/s, 1/s</div>
+            </div>
+
+            <div class="question-frame" id="question4" style="display:none">
+                <p><strong>Aufgabe:</strong> Das Zeitgesetz für den radioaktiven Zerfall lautet, wobei n0 die Anzahl der radioaktiven Kerne zur Zeit t = 0, n(t) die Anzahl der davon zum Zeitpunkt t verbliebenen Kerne und λ die sogenannte Zerfallskonstante ist. Welche Dimension hat λ?</p>
+                <div class="buttons">
+                    <button onclick="showHint('hint4')">Show Hint</button>
+                    <button onclick="showSolution('solution4')">Show Lösung</button>
+                </div>
+                <div id="hint4" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution4" class="solution-frame solution"><strong>Lösung:</strong> Im Exponenten darf nur eine reine Zahl stehen, also ist [λ] = 1/s</div>
+            </div>
+
+            <div class="question-frame" id="question5" style="display:none">
+                <p><strong>Aufgabe:</strong> Der Impuls eines Körpers ist das Produkt aus seiner Geschwindigkeit und seiner Masse. Zeigen Sie, dass der Impuls die Dimension Kraft mal Zeit hat. 😈</p>
+                <div class="buttons">
+                    <button onclick="showHint('hint5')">Show Hint</button>
+                    <button onclick="showSolution('solution5')">Show Lösung</button>
+                </div>
+                <div id="hint5" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution5" class="solution-frame solution"><strong>Lösung:</strong> Die Einheit des Impulses ist. Wir erweitern mit Sekunden: Das Resultat ist die Dimension einer Kraft (Newton) mal die Dimension der Zeit</div>
+            </div>
+
+            <div class="question-frame" id="question6" style="display:none">
+                <p><strong>Aufgabe:</strong> Ein Körper, der in einem dickflüssigen Öl langsam fällt, erfährt dabei eine Reibungskraft.<br>(a) Was ist die Einheit der Viskosität η (eta) ausgedrückt in SI-Grundeinheiten?<br>(b) Zeigen Sie, dass diese Einheit gleich der Einheit des Drucks (Pascal) mal einer Zeit ist.</p>
+                <div class="buttons">
+                    <button onclick="showHint('hint6')">Show Hint</button>
+                    <button onclick="showSolution('solution6')">Show Lösung</button>
+                </div>
+                <div id="hint6" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution6" class="solution-frame solution"><strong>Lösung:</strong> Auflösen nach und Einheiten einsetzen. 6 und π haben Einheit 1.</div>
+            </div>
+
+            <div class="question-frame" id="question7" style="display:none">
+                <p><strong>Aufgabe:</strong> Drücken Sie folgende Werte in der jeweils zusätzlich angegebenen Einheit in der Exponentialschreibweise aExx aus. Behalten Sie die Anzahl der signifikanten Stellen bei.<br>(a) 1 345 100 m = __  km<br>(b) 12 340.0 kW = __ MW<br>(c) 54,32 ms = __ s,<br>(d) 3,0 m = __ mm.<br>(e) 0.1 km = __ m</p>
+                <div class="buttons">
+                    <button onclick="showHint('hint7')">Show Hint</button>
+                    <button onclick="showSolution('solution7')">Show Lösung</button>
+                </div>
+                <div id="hint7" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution7" class="solution-frame solution"><strong>Lösung:</strong> (a) 1.345100E3 km (nicht 1345.1, hier fehlen zwei Stellen am Schluss)<br>(b) 1.2340.0E1 = 12.3400 MW<br>(c) 54.23E-3 s<br>(d) 3.0E3 mm<br>(e) 1E2 m (nicht 100 m, das wären 3 signifikante Stellen statt nur einer.</div>
+            </div>
+
+            <div class="question-frame" id="question8" style="display:none">
+                <p><strong>Aufgabe:</strong> (a) Was versteht man unter einem Massenpunkt?<br>(b) Welche Bewegungen lassen sich durch das Modell Massenpunkt beschreiben und welche nicht?<br>(c) Welches Modell ist erforderlich, um Bewegungen zu beschreiben, die sich durch einen einzelnen Massenpunkt nicht erfassen lassen?</p>
+                <div class="buttons">
+                    <button onclick="showHint('hint8')">Show Hint</button>
+                    <button onclick="showSolution('solution8')">Show Lösung</button>
+                </div>
+                <div id="hint8" class="hint-frame hint"><strong>Hint:</strong> Hint</div>
+                <div id="solution8" class="solution-frame solution"><strong>Lösung:</strong> (a) Idealisierung einer Masse durch einen Punkt – Elektron?<br>(b) Darstellung von Translationen, aber nicht Rotationen<br>(c) Für Rotationen braucht es mehrere Massepunkte (Hantel aus zwei Punkten und mehr)<br></div>
+            </div>
+            <!-- Generated content ends here -->
         </div>
     </div>
 
     <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/2</span>
+        <span id="questionNumber" class="current-question">1/8</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
