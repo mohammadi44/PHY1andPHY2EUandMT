@@ -1,1 +1,17 @@
-{}
+{
+    "1": {
+        "question": "a) Masse\nb) L\u00e4nge\nc) Energie,\nd) Zeit\ne) alle genannten Gr\u00f6\u00dfen sind solche Grundgr\u00f6ssen",
+        "hint": "",
+        "solution": ""
+    },
+    "2": {
+        "question": "a) 0.0005130?\nb) 100\nc) 10E2",
+        "hint": "",
+        "solution": "(b) 3 (1,0,0)\n(c) 2 (1,0)"
+    },
+    "3": {
+        "question": "a) x = C1 +C2 t\nb) x = 1/2 C1 t2\nc) v2 = 2 C1 x\nd) x = C1 cos (C2 t)\ne) v2 = 2 C1 v \u2212 (C2 x)2.",
+        "hint": "",
+        "solution": "b) m/s\u00b2\nc) m/s\u00b2\nd) m, 1/s\ne) m/s, 1/s"
+    }
+}
