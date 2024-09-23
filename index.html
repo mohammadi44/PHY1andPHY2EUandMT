@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHY1 Interactive Questions</title>
     <style>
-        /* General page layout */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,16 +13,12 @@
             flex-direction: column;
             height: 100vh;
         }
-
-        /* Title styling */
         .title {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             margin-top: 20px;
         }
-
-        /* Question box styling */
         .question-box {
             background-color: #f9f9f9;
             padding: 20px;
@@ -41,8 +36,6 @@
             justify-content: flex-start;
             align-items: flex-start;
         }
-
-        /* Frame for question, hint, and solution */
         .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
@@ -51,26 +44,21 @@
             width: 100%;
             box-sizing: border-box;
         }
-
         .hint, .solution {
             display: none;
             font-style: italic;
             color: #666;
         }
-
         .buttons {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-
         button {
             cursor: pointer;
             padding: 10px 20px;
             font-size: 16px;
         }
-
-        /* Navigation positioned at the bottom of the page */
         .navigation {
             justify-content: space-between;
             align-items: center;
@@ -84,27 +72,18 @@
             box-sizing: border-box;
             display: none; /* Initially hidden */
         }
-
         .nav-buttons {
             display: flex;
             gap: 10px;
         }
-
         .current-question {
             font-weight: bold;
         }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* Link to show Week 1 */
         .link {
             margin-top: 20px;
-            margin-left: 20px; /* Move to the very left */
+            margin-left: 20px;
             font-size: 20px;
-            text-align: left; /* Align left */
+            text-align: left;
             cursor: pointer;
             text-decoration: underline;
             color: blue;
@@ -115,22 +94,12 @@
     </style>
 </head>
 <body>
-
-    <!-- Bold title at the top -->
     <div class="title">PHY1</div>
-
-    <!-- Link to Week 2 -->
-    <div class="link" id="week2Link" onclick="showQuestions()">Woche 2</div>
-
-    <!-- Question box for Week 2 -->
+    <div class="link" id="week2Link">Woche 2</div>
     <div id="week2" class="question-box">
         <h2>Physik Grundlagen</h2>  
-        <div id="questionsContainer">
-            <!-- Questions, hints, and solutions will be loaded here -->
-        </div>
+        <div id="questionsContainer"></div>
     </div>
-
-    <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
         <span id="questionNumber" class="current-question">1/1</span>
         <div class="nav-buttons">
@@ -138,36 +107,38 @@
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
         </div>
     </div>
-
     <script>
+        document.getElementById('week2Link').addEventListener('click', function() {
+            fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('questionsContainer').innerHTML = html;
+                    initQuestions();
+                    document.getElementById('week2').style.display = 'flex';
+                    document.querySelector('.navigation').style.display = 'flex';
+                })
+                .catch(error => console.error('Error fetching the questions:', error));
+        });
+
         let currentQuestion = 1;
         let totalQuestions = 0;
 
-        function showQuestions() {
-            fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('questionsContainer').innerHTML = html;
-                    initQuestions();  // Initialize the questions once they are loaded
-                    document.getElementById('week2').style.display = 'flex'; // Display the question box
-                    document.querySelector('.navigation').style.display = 'flex'; // Show the navigation bar
-                });
-            document.getElementById('week2Link').style.display = 'none'; // Hide the link after it's clicked
+        function initQuestions() {
+            totalQuestions = document.querySelectorAll('#questionsContainer .question-frame').length;
+            updateQuestionDisplay();
+            document.querySelector('.navigation').style.display = totalQuestions > 1 ? 'flex' : 'none';
         }
 
         function updateQuestionDisplay() {
-            // Ensure all questions are properly hidden or shown
             for (let i = 1; i <= totalQuestions; i++) {
-                const questionElement = document.getElementById(`question${i}`);
-                if (questionElement) {
-                    questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
-                }
+                document.getElementById(`question${i}`).style.display = i === currentQuestion ? 'block' : 'none';
             }
-
-            // Update question counter and disable/enable navigation buttons
             document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
-            document.getElementById('prevBtn').disabled = (currentQuestion === 1);
-            document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
+            document.getElementById('prevBtn').disabled = currentQuestion === 1;
+            document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
         }
 
         function prevQuestion() {
@@ -183,15 +154,6 @@
                 updateQuestionDisplay();
             }
         }
-
-        // Initialize questions based on the generated HTML content
-        function initQuestions() {
-            // Calculate the total number of question frames dynamically
-            totalQuestions = document.querySelectorAll('.question-frame').length;
-            updateQuestionDisplay();
-            document.querySelector('.navigation').style display = (totalQuestions > 1) ? 'flex' : 'none';  // Show/hide navigation
-        }
     </script>
-
 </body>
 </html>
