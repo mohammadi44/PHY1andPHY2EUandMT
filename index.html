@@ -3,52 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions - Week 1</title>
+    <title>Interactive Questions - Week 1</title>
     <style>
+        /* General page layout */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
+
+        /* Link positioned at the top-left corner */
+        .link {
+            margin: 20px;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Question box hidden initially */
+        .question-box {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 60px;
+            flex-grow: 1;
+            max-width: 900px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        /* Black frame for question */
+        .question-frame {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: white;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Separate black frame for solution */
+        .solution-frame {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: white;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hint {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* Navigation positioned at the bottom of the page */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            border-top: 2px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .current-question {
+            font-weight: bold;
+        }
+
         h1 {
             text-align: center;
-        }
-        .question {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-            background-color: #f9f9f9;
-        }
-        .hint, .solution {
-            font-style: italic;
-            color: #555;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Week 1 Questions</h1>
-    <div id="question-container"></div>
+
+    <!-- Link to Week 1 positioned at the top-left -->
+    <span class="link" onclick="showQuestions()">Week 1</span>
+
+    <!-- Hidden question box for Week 1 -->
+    <div id="week1" class="question-box">
+        <h2>Questions for Week 1</h2>
+
+        <!-- Question frames dynamically populated from JSON -->
+        <div class="question-frame" id="question1"></div>
+        <div class="solution-frame" id="solution1" style="display:none;"></div>
+
+        <div class="question-frame" id="question2" style="display:none;"></div>
+        <div class="solution-frame" id="solution2" style="display:none;"></div>
+    </div>
+
+    <!-- Navigation Buttons positioned at the bottom -->
+    <div class="navigation">
+        <span id="questionNumber" class="current-question">1/2</span>
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
 
     <script>
-        // Append a timestamp to force the browser to fetch the latest version of the JSON file
-        fetch('week1_questions.json?timestamp=' + new Date().getTime())
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('question-container');
-                container.innerHTML = '';  // Clear the container
+        let currentQuestion = 1;
+        const totalQuestions = 2;  // Update this to match the number of questions in your JSON data
 
-                // Loop through each question in the JSON data
-                for (const [key, value] of Object.entries(data)) {
-                    const questionDiv = document.createElement('div');
-                    questionDiv.classList.add('question');
-                    questionDiv.innerHTML = `
-                        <h2>Question ${key}</h2>
-                        <p><strong>Question:</strong> ${value.question}</p>
-                        <p class="hint"><strong>Hint:</strong> ${value.hint}</p>
-                        <p class="solution"><strong>Solution:</strong> ${value.solution}</p>
-                    `;
-                    container.appendChild(questionDiv);
+        function showQuestions() {
+            const questionBox = document.getElementById('week1');
+            questionBox.style.display = 'block'; 
+            loadQuestionsFromJSON();  
+            updateQuestionDisplay();
+        }
+
+        function showHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.style.display = (hint.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function showSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            solution.style.display = (solution.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function updateQuestionDisplay() {
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionElement = document.getElementById(`question${i}`);
+                const solutionElement = document.getElementById(`solution${i}`);
+                questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
+                solutionElement.style.display = 'none';  
+            }
+
+            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+            document.getElementById('prevBtn').disabled = (currentQuestion === 1);
+            document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                updateQuestionDisplay();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                updateQuestionDisplay();
+            }
+        }
+
+        // Function to load questions from the JSON file
+        function loadQuestionsFromJSON() {
+            fetch('week1_questions.json')  // Assuming JSON is in the same directory
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Populate each question, hint, and solution based on the JSON data
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const question = data[i];  // Access question i from the JSON
+                    if (question) {
+                        // Populate question
+                        document.getElementById(`question${i}`).innerHTML = `
+                            <p><strong>Question:</strong> ${question.question}</p>
+                            <div class="buttons">
+                                <button onclick="showHint('hint${i}')">Show Hint</button>
+                                <button onclick="showSolution('solution${i}')">Show Solution</button>
+                            </div>
+                            <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
+                        `;
+
+                        // Populate solution
+                        document.getElementById(`solution${i}`).innerHTML = `<strong>Solution:</strong> ${question.solution}`;
+                    }
                 }
             })
-            .catch(error => console.error('Error loading JSON:', error));
+            .catch(error => console.error("Error loading the questions data:", error));
+        }
     </script>
+
 </body>
 </html>
