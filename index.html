@@ -82,6 +82,7 @@
             background-color: #f9f9f9;
             border-top: 2px solid #ccc;
             box-sizing: border-box;
+            display: none; /* Initially hidden */
         }
 
         .nav-buttons {
@@ -118,11 +119,11 @@
     <!-- Bold title at the top -->
     <div class="title">PHY1</div>
 
-    <!-- Link to Week 1 -->
-    <div class="link" id="week1Link" onclick="showQuestions()">Woche 2</div>
+    <!-- Link to Week 2 -->
+    <div class="link" id="week2Link" onclick="showQuestions()">Woche 2</div>
 
-    <!-- Question box for Week 1 -->
-    <div id="week1" class="question-box">
+    <!-- Question box for Week 2 -->
+    <div id="week2" class="question-box">
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
             <!-- Questions, hints, and solutions will be loaded here -->
@@ -148,20 +149,10 @@
                 .then(html => {
                     document.getElementById('questionsContainer').innerHTML = html;
                     initQuestions();  // Initialize the questions once they are loaded
-                    document.getElementById('week1').style.display = 'flex'; // Display the question box
+                    document.getElementById('week2').style.display = 'flex'; // Display the question box
                     document.querySelector('.navigation').style.display = 'flex'; // Show the navigation bar
                 });
-            document.getElementById('week1Link').style.display = 'none'; // Hide the link after it's clicked
-        }
-
-        function showHint(hintId) {
-            const hint = document.getElementById(hintId);
-            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function showSolution(solutionId) {
-            const solution = document.getElementById(solutionId);
-            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+            document.getElementById('week2Link').style.display = 'none'; // Hide the link after it's clicked
         }
 
         function updateQuestionDisplay() {
@@ -198,7 +189,7 @@
             // Calculate the total number of question frames dynamically
             totalQuestions = document.querySelectorAll('.question-frame').length;
             updateQuestionDisplay();
-            document.querySelector('.navigation').style.display = (totalQuestions > 1) ? 'flex' : 'none';  // Show/hide navigation
+            document.querySelector('.navigation').style display = (totalQuestions > 1) ? 'flex' : 'none';  // Show/hide navigation
         }
     </script>
 
