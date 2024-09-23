@@ -80,6 +80,7 @@
             background-color: #f9f9f9;
             border-top: 2px solid #ccc;
             box-sizing: border-box;
+            display: none; /* Initially hidden */
         }
 
         .nav-buttons {
@@ -135,7 +136,7 @@
     </div>
 
     <!-- Navigation Buttons at the bottom -->
-    <div class="navigation hidden">
+    <div class="navigation">
         <span id="questionNumber" class="current-question">1/1</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
@@ -150,10 +151,13 @@
         function showQuestions() {
             // Show the question box and navigation
             document.getElementById('week1').style.display = 'block';
-            document.querySelector('.navigation').classList.remove('hidden');
+            document.querySelector('.navigation').style.display = 'flex';
             
             // Hide the link after it's clicked
             document.getElementById('week1Link').style.display = 'none';
+            
+            // Initialize questions now that they are visible
+            initQuestions();
         }
 
         function showHint(hintId) {
@@ -198,7 +202,9 @@
         }
 
         // Call initQuestions on window load to set up the navigation
-        window.onload = initQuestions;
+        window.onload = function() {
+            document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
+        }
     </script>
 
 </body>
