@@ -108,52 +108,77 @@
         </div>
     </div>
     <script>
-        document.getElementById('week2Link').addEventListener('click', function() {
-            fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.text();
-                })
-                .then(html => {
-                    document.getElementById('questionsContainer').innerHTML = html;
-                    initQuestions();
-                    document.getElementById('week2').style.display = 'flex';
-                    document.querySelector('.navigation').style.display = 'flex';
-                })
-                .catch(error => console.error('Error fetching the questions:', error));
+document.getElementById('week2Link').addEventListener('click', function() {
+    fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('questionsContainer').innerHTML = html;
+            attachEventListeners();
+            initQuestions();
+            document.getElementById('week2').style.display = 'flex';
+            document.querySelector('.navigation').style.display = 'flex';
+        })
+        .catch(error => console.error('Error fetching the questions:', error));
+});
+
+let currentQuestion = 1;
+let totalQuestions = 0;
+
+function attachEventListeners() {
+    document.querySelectorAll('[data-hint]').forEach(button => {
+        button.addEventListener('click', function() {
+            const hintId = button.getAttribute('data-hint');
+            showHint(hintId);
         });
+    });
 
-        let currentQuestion = 1;
-        let totalQuestions = 0;
+    document.querySelectorAll('[data-solution]').forEach(button => {
+        button.addEventListener('click', function() {
+            const solutionId = button.getAttribute('data-solution');
+            showSolution(solutionId);
+        });
+    });
+}
 
-        function initQuestions() {
-            totalQuestions = document.querySelectorAll('#questionsContainer .question-frame').length;
-            updateQuestionDisplay();
-            document.querySelector('.navigation').style.display = totalQuestions > 1 ? 'flex' : 'none';
-        }
+function showHint(hintId) {
+    const hintElement = document.getElementById(hintId);
+    hintElement.style.display = hintElement.style.display === 'none' ? 'block' : 'none';
+}
 
-        function updateQuestionDisplay() {
-            for (let i = 1; i <= totalQuestions; i++) {
-                document.getElementById(`question${i}`).style.display = i === currentQuestion ? 'block' : 'none';
-            }
-            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
-            document.getElementById('prevBtn').disabled = currentQuestion === 1;
-            document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
-        }
+function showSolution(solutionId) {
+    const solutionElement = document.getElementById(solutionId);
+    solutionElement.style.display = solutionElement.style.display === 'none' ? 'block' : 'none';
+}
 
-        function prevQuestion() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                updateQuestionDisplay();
-            }
-        }
+function initQuestions() {
+    totalQuestions = document.querySelectorAll('.question-frame').length;
+    updateQuestionDisplay();
+    document.querySelector('.navigation').style.display = totalQuestions > 1 ? 'flex' : 'none';
+}
 
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                updateQuestionDisplay();
-            }
-        }
-    </script>
-</body>
-</html>
+function updateQuestionDisplay() {
+    for (let i = 1; i <= totalQuestions; i++) {
+        document.getElementById(`question${i}`).style.display = i === currentQuestion ? 'block' : 'none';
+    }
+    document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+    document.getElementById('prevBtn').disabled = currentQuestion === 1;
+    document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
+}
+
+function prevQuestion() {
+    if (currentQuestion > 1) {
+        currentQuestion--;
+        updateQuestionDisplay();
+    }
+}
+
+function nextQuestion() {
+    if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        updateQuestionDisplay();
+    }
+}
+</script>
