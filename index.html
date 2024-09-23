@@ -42,7 +42,7 @@
             align-items: flex-start;
         }
 
-        /* Frames for question, hint, and solution */
+        /* Black frame for question, hint, and solution */
         .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
@@ -185,16 +185,7 @@
         function updateQuestionDisplay() {
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionElement = document.getElementById(`question${i}`);
-                const hintElement = document.getElementById(`hint${i}`);
-                const solutionElement = document.getElementById(`solution${i}`);
-                
-                if (i === currentQuestion) {
-                    questionElement.style.display = 'block';
-                    hintElement.style.display = 'none'; // Hide hint when switching questions
-                    solutionElement.style.display = 'none'; // Hide solution when switching questions
-                } else {
-                    questionElement.style.display = 'none';
-                }
+                questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
             }
 
             document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
