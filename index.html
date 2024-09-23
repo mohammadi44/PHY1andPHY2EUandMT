@@ -109,11 +109,15 @@
         /* Link to show Week 1 */
         .link {
             margin-top: 20px;
+            margin-left: 20px; /* Move to the very left */
             font-size: 20px;
-            text-align: center;
+            text-align: left; /* Align left */
             cursor: pointer;
             text-decoration: underline;
             color: blue;
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
     </style>
 </head>
@@ -123,7 +127,7 @@
     <div class="title">PHY1</div>
 
     <!-- Link to Week 1 -->
-    <div class="link" id="week1Link" onclick="showQuestions()">Week 1</div>
+    <div class="link" id="week1Link" onclick="showQuestions()">Woche 2</div>
 
     <!-- Question box for Week 1 -->
     <div id="week1" class="question-box">
@@ -154,7 +158,7 @@
                 <div id="solution2" class="solution-frame solution"><strong>Lösung:</strong> (a) 4 signifikante Stellen, (b) 3, (c) 2</div>
             </div>
 
-            <!-- Add more questions as needed -->
+            <!-- Additional questions go here -->
         </div>
     </div>
 
@@ -169,7 +173,7 @@
 
     <script>
         let currentQuestion = 1;
-        let totalQuestions = 2;
+        let totalQuestions = 0;
 
         function showQuestions() {
             // Show the question box and navigation
@@ -215,6 +219,18 @@
                 currentQuestion++;
                 updateQuestionDisplay();
             }
+        }
+
+        // Initialize questions based on the generated HTML content
+        function initQuestions() {
+            totalQuestions = document.querySelectorAll('.question-frame').length;
+            updateQuestionDisplay();
+        }
+
+        // Call initQuestions on window load to set up the navigation
+        window.onload = function() {
+            initQuestions();  // Dynamically calculate total questions
+            document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
         }
     </script>
 
