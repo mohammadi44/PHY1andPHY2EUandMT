@@ -32,6 +32,11 @@
     "7": {
         "question": "Drücken Sie folgende Werte in der jeweils zusätzlich angegebenen Einheit in der Exponentialschreibweise aExx aus. Behalten Sie die Anzahl der signifikanten Stellen bei.\n(a) 1 345 100 m = __  km\n(b) 12 340.0 kW = __ MW\n(c) 54,32 ms = __ s,\n(d) 3,0 m = __ mm.\n(e) 0.1 km = __ m",
         "hint": "Hint",
-        "solution": "(a) 1.345100E3 km (nicht 1345.1, hier fehlen zwei Stellen am Schluss)\n(b) 1.2340.0E1 = 12.3400 MW\n(c) 54.23E-3 s\n(d) 3.0E3 mm\n(e) 1E2 m (nicht 100 m, das wären 3 signifikante Stellen statt nur einer.\n"
+        "solution": "(a) 1.345100E3 km (nicht 1345.1, hier fehlen zwei Stellen am Schluss)\n(b) 1.2340.0E1 = 12.3400 MW\n(c) 54.23E-3 s\n(d) 3.0E3 mm\n(e) 1E2 m (nicht 100 m, das wären 3 signifikante Stellen statt nur einer."
+    },
+    "8": {
+        "question": "a) Was versteht man unter einem Massenpunkt?\nb) Welche Bewegungen lassen sich durch das Modell Massenpunkt beschreiben und welche nicht?\nc) Welches Modell ist erforderlich, um Bewegungen zu beschreiben, die sich durch einen einzelnen Massenpunkt nicht erfassen lassen?",
+        "hint": "Hint",
+        "solution": "a) Idealisierung einer Masse durch einen Punkt – Elektron?\nb) Darstellung von Translationen, aber nicht Rotationen\nc) Für Rotationen braucht es mehrere Massepunkte (Hantel aus zwei Punkten und mehr)\n"
     }
 }
