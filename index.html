@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHY1 Interactive Questions</title>
+    <title>Interactive Questions - Week 1</title>
     <style>
         /* General page layout */
         body {
@@ -13,14 +13,6 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-        }
-
-        /* Title styling */
-        .title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
         }
 
         /* Link positioned at the top-left corner */
@@ -35,13 +27,9 @@
             left: 0;
         }
 
-        /* Initially hide the entire question box and navigation */
-        #week1, .navigation {
-            display: none;
-        }
-
-        /* Question box styling */
+        /* Question box hidden initially */
         .question-box {
+            display: none;
             background-color: #f9f9f9;
             padding: 20px;
             margin-top: 60px;
@@ -127,15 +115,12 @@
 </head>
 <body>
 
-    <!-- Bold title at the top -->
-    <div class="title">PHY1</div>
-
     <!-- Link to Week 1 positioned at the top-left -->
     <span class="link" onclick="showQuestions()">Week 1</span>
 
     <!-- Hidden question box for Week 1 -->
     <div id="week1" class="question-box">
-        <h2>Physik Grundlagen</h2>  <!-- Updated heading -->
+        <h2>Questions for Week 1</h2>
 
         <!-- Question frames dynamically populated from JSON -->
         <div class="question-frame" id="question1"></div>
@@ -145,7 +130,7 @@
         <div class="solution-frame" id="solution2" style="display:none;"></div>
     </div>
 
-    <!-- Hidden Navigation Buttons positioned at the bottom -->
+    <!-- Navigation Buttons positioned at the bottom -->
     <div class="navigation">
         <span id="questionNumber" class="current-question">1/2</span>
         <div class="nav-buttons">
@@ -156,13 +141,11 @@
 
     <script>
         let currentQuestion = 1;
-        const totalQuestions = 8;  // Update this to match the number of questions in your JSON data
+        const totalQuestions = 2;  // Update this to match the number of questions in your JSON data
 
         function showQuestions() {
             const questionBox = document.getElementById('week1');
-            const navigation = document.querySelector('.navigation');
-            questionBox.style.display = 'block'; // Show question box when "Week 1" is clicked
-            navigation.style.display = 'flex';  // Show navigation when "Week 1" is clicked
+            questionBox.style.display = 'block'; 
             loadQuestionsFromJSON();  
             updateQuestionDisplay();
         }
@@ -179,13 +162,13 @@
 
         function updateQuestionDisplay() {
             for (let i = 1; i <= totalQuestions; i++) {
-                const questionElement = document.getElementById(question${i});
-                const solutionElement = document.getElementById(solution${i});
+                const questionElement = document.getElementById(`question${i}`);
+                const solutionElement = document.getElementById(`solution${i}`);
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
                 solutionElement.style.display = 'none';  
             }
 
-            document.getElementById('questionNumber').innerText = ${currentQuestion}/${totalQuestions};
+            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
             document.getElementById('prevBtn').disabled = (currentQuestion === 1);
             document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
         }
@@ -206,8 +189,7 @@
 
         // Function to load questions from the JSON file
         function loadQuestionsFromJSON() {
-            const timestamp = new Date().getTime();  // Add timestamp to prevent caching
-            fetch(week1_questions.json?timestamp=${timestamp})  // Cache busting with timestamp
+            fetch('week1_questions.json')  // Assuming JSON is in the same directory
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
@@ -220,17 +202,17 @@
                     const question = data[i];  // Access question i from the JSON
                     if (question) {
                         // Populate question
-                        document.getElementById(question${i}).innerHTML = 
+                        document.getElementById(`question${i}`).innerHTML = `
                             <p><strong>Question:</strong> ${question.question}</p>
                             <div class="buttons">
                                 <button onclick="showHint('hint${i}')">Show Hint</button>
                                 <button onclick="showSolution('solution${i}')">Show Solution</button>
                             </div>
                             <div id="hint${i}" class="hint" style="display:none;"><strong>Hint:</strong> ${question.hint}</div>
-                        ;
+                        `;
 
                         // Populate solution
-                        document.getElementById(solution${i}).innerHTML = <strong>Solution:</strong> ${question.solution};
+                        document.getElementById(`solution${i}`).innerHTML = `<strong>Solution:</strong> ${question.solution}`;
                     }
                 }
             })
