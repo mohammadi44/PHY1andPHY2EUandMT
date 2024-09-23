@@ -52,7 +52,7 @@
             box-sizing: border-box;
         }
 
-        .hint, .solution {
+        .hint {
             font-style: italic;
             color: #666;
         }
@@ -96,6 +96,16 @@
             margin-top: 20px;
         }
 
+        /* Initially hidden */
+        .hidden {
+            display: none;
+        }
+
+        /* Initially hide the hint and solution */
+        .hint, .solution {
+            display: none;
+        }
+
         /* Link to show Week 1 */
         .link {
             margin-top: 20px;
@@ -108,11 +118,6 @@
             position: absolute;
             top: 20px;
             left: 20px;
-        }
-
-        /* Hidden by default */
-        .hint, .solution {
-            display: none;
         }
     </style>
 </head>
@@ -128,14 +133,38 @@
     <div id="week1" class="question-box">
         <h2>Physik Grundlagen</h2>  
         <div id="questionsContainer">
-            <!-- This is where the Python-generated content goes -->
-            <!-- Make sure the output of the Python script goes here -->
+            <!-- Example content -->
+            <div class="question-frame" id="question1">
+                <p><strong>Aufgabe:</strong> Welche der folgenden physikalischen Grössen ist keine Grundgrösse im SI-Einheitensystem? <br>
+                    (a) Masse<br>(b) Länge<br>(c) Energie<br>(d) Zeit<br>(e) alle genannten Größen sind solche Grundgrössen
+                </p>
+                <div class="buttons">
+                    <button onclick="showHint('hint1')">Show Hint</button>
+                    <button onclick="showSolution('solution1')">Show Lösung</button>
+                </div>
+                <div id="hint1" class="hint-frame hint"><strong>Hint:</strong> Die Energie (c) ist keine Grundgrösse.</div>
+                <div id="solution1" class="solution-frame solution"><strong>Lösung:</strong> Die Einheit Joule ist zusammengesetzt aus Länge, Masse, Zeit.</div>
+            </div>
+
+            <div class="question-frame" id="question2" style="display:none">
+                <p><strong>Aufgabe:</strong> Wie viele signifikante Stellen haben die folgenden Dezimalzahlen?<br>
+                    (a) 0.0005130<br>(b) 100<br>(c) 10E2
+                </p>
+                <div class="buttons">
+                    <button onclick="showHint('hint2')">Show Hint</button>
+                    <button onclick="showSolution('solution2')">Show Lösung</button>
+                </div>
+                <div id="hint2" class="hint-frame hint"><strong>Hint:</strong> Es sind 4 signifikante Stellen in 0.0005130.</div>
+                <div id="solution2" class="solution-frame solution"><strong>Lösung:</strong> (a) 4 signifikante Stellen, (b) 3, (c) 2</div>
+            </div>
+
+            <!-- Additional questions go here -->
         </div>
     </div>
 
     <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/1</span>
+        <span id="questionNumber" class="current-question">1/2</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -168,13 +197,11 @@
         }
 
         function updateQuestionDisplay() {
-            // Ensure all questions are properly hidden or shown
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionElement = document.getElementById(`question${i}`);
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
             }
 
-            // Update question counter and disable/enable navigation buttons
             document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
             document.getElementById('prevBtn').disabled = (currentQuestion === 1);
             document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
@@ -196,7 +223,6 @@
 
         // Initialize questions based on the generated HTML content
         function initQuestions() {
-            // Calculate the total number of question frames dynamically
             totalQuestions = document.querySelectorAll('.question-frame').length;
             updateQuestionDisplay();
         }
