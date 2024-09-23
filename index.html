@@ -1,73 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Week 2 Questions</title>
-<style>
-    .question-frame, .hint, .solution {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 20px;
-        display: none; /* Initially hide all components */
-    }
-    #woche2-link {
-        cursor: pointer;
-        color: blue;
-        text-decoration: underline;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY1 Interactive Questions</title>
+    <style>
+        /* General page layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Title styling */
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Question box styling */
+        .question-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+            max-width: 900px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: none; /* Hidden initially */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        /* Frame for question, hint, and solution */
+        .question-frame, .hint-frame, .solution-frame {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: white;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hint, .solution {
+            display: none;
+            font-style: italic;
+            color: #666;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* Navigation positioned at the bottom of the page */
+        .navigation {
+            display: none; /* Initially hidden */
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            border-top: 2px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .current-question {
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Link to show Week 1 */
+        .link {
+            margin-top: 20px;
+            margin-left: 20px; /* Move to the very left */
+            font-size: 20px;
+            text-align: left; /* Align left */
+            cursor: pointer;
+            text-decoration: underline;
+            color: blue;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <span id="woche2-link">Woche2</span>
-</div>
-<div id="content">
-    <!-- Questions, hints, and solutions will be loaded here -->
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const contentDiv = document.getElementById('content');
-    const woche2Link = document.getElementById('woche2-link');
+    <!-- Bold title at the top -->
+    <div class="title">PHY1</div>
 
-    // Function to fetch HTML content from GitHub
-    async function fetchQuestions() {
-        const response = await fetch('https://raw.githubusercontent.com/mohammadi44/PHY1andPHY2EUandMT/main/Week1_questions.html');
-        if (!response.ok) {
-            console.error('Failed to fetch questions:', response.status);
-            return;
+    <!-- Link to Week 1 -->
+    <div class="link" id="week1Link" onclick="showQuestions()">Woche 2</div>
+
+    <!-- Question box for Week 1 -->
+    <div id="week1" class="question-box">
+        <h2>Physik Grundlagen</h2>  
+        <div id="questionsContainer">
+            <!-- This is where the Python-generated content goes -->
+            <!-- Make sure the output of the Python script goes here -->
+        </div>
+    </div>
+
+    <!-- Navigation Buttons at the bottom -->
+    <div class="navigation">
+        <span id="questionNumber" class="current-question">1/1</span>
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let totalQuestions = 0;
+
+        function showQuestions() {
+            // Show the question box and navigation
+            document.getElementById('week1').style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            
+            // Hide the link after it's clicked
+            document.getElementById('week1Link').style.display = 'none';
+            
+            updateQuestionDisplay();  // Show the first question
         }
-        const html = await response.text();
-        contentDiv.innerHTML = html;
-        attachEventListeners();
-        displayFirstQuestionOnly();
-    }
 
-    // Function to attach event listeners to buttons after content is loaded
-    function attachEventListeners() {
-        document.querySelectorAll('.question-frame button').forEach(button => {
-            button.addEventListener('click', function() {
-                const targetId = button.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                targetElement.style.display = 'block'; // Show the hint or solution
-            });
-        });
-    }
-
-    // Function to display only the first question initially
-    function displayFirstQuestionOnly() {
-        const firstQuestionFrame = document.querySelector('.question-frame');
-        if (firstQuestionFrame) {
-            firstQuestionFrame.style.display = 'block'; // Show only the first question
+        function showHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
         }
-    }
 
-    // Event listener for the Woche2 link
-    woche2Link.addEventListener('click', function() {
-        fetchQuestions(); // Load the questions when Woche2 is clicked
-        woche2Link.style.display = 'none'; // Optionally hide the link after loading
-    });
-});
-</script>
+        function showSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function updateQuestionDisplay() {
+            // Ensure all questions are properly hidden or shown
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionElement = document.getElementById(`question${i}`);
+                questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
+            }
+
+            // Update question counter and disable/enable navigation buttons
+            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+            document.getElementById('prevBtn').disabled = (currentQuestion === 1);
+            document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                updateQuestionDisplay();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                updateQuestionDisplay();
+            }
+        }
+
+        // Initialize questions based on the generated HTML content
+        function initQuestions() {
+            // Calculate the total number of question frames dynamically
+            totalQuestions = document.querySelectorAll('.question-frame').length;
+            updateQuestionDisplay();
+        }
+
+        // Call initQuestions on window load to set up the navigation
+        window.onload = function() {
+            initQuestions();  // Dynamically calculate total questions
+            document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
+        }
+    </script>
+
 </body>
 </html>
