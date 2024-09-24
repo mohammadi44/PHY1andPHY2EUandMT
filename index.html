@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 1 Questions</title>
+    <title>Week 2 Questions</title>
 
     <!-- Load MathJax for rendering LaTeX equations -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+        }
+
+        /* Style for the link at the top-left */
+        #nav {
+            position: fixed;
+            top: 10px;
+            left: 10px;
         }
 
         .question-frame {
@@ -37,48 +43,49 @@
             padding: 8px 12px;
             cursor: pointer;
         }
+
+        #questions-container {
+            display: none; /* Initially hidden */
+        }
     </style>
 
     <script>
         // Function to fetch Week1_questions.html and insert content
         function loadQuestions() {
-            fetch('Week1-questions.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('questions-container').innerHTML = data;
-        if (window.MathJax) {
-            MathJax.typeset();  // Re-render MathJax equations after inserting content
+            fetch('Week1_questions.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('questions-container').innerHTML = data;
+                    if (window.MathJax) {
+                        MathJax.typeset();
+                    }
+                })
+                .catch(error => console.error('Error fetching questions:', error));
         }
-    })
-    .catch(error => console.error('Error fetching questions:', error));
 
-        }
-
-        // Show and hide hint
-        function showHint(id) {
-            var hint = document.getElementById(id);
-            if (hint.style.display === "none") {
-                hint.style.display = "block";
+        // Function to show or hide questions
+        function toggleQuestions() {
+            var container = document.getElementById('questions-container');
+            if (container.style.display === "none") {
+                container.style.display = "block";  // Show the questions
             } else {
-                hint.style.display = "none";
+                container.style.display = "none";  // Hide the questions
             }
         }
 
-        // Show and hide solution
-        function showSolution(id) {
-            var solution = document.getElementById(id);
-            if (solution.style.display === "none") {
-                solution.style.display = "block";
-            } else {
-                solution.style.display = "none";
-            }
-        }
+        window.onload = function() {
+            loadQuestions();  // Load the questions on page load
+        };
     </script>
 </head>
-<body onload="loadQuestions()">
+<body>
 
-    <h1>Week 1 Questions</h1>
+    <!-- Add the navigation link at the top-left -->
+    <div id="nav">
+        <a href="#" onclick="toggleQuestions()">Woche2</a>
+    </div>
 
+    <!-- Questions container -->
     <div id="questions-container">
         <!-- The content from Week1_questions.html will be dynamically loaded here -->
     </div>
