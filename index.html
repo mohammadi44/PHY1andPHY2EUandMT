@@ -64,7 +64,7 @@
         button {
             cursor: pointer;
             border: 2px solid white; /* White border for buttons */
-            background-color: #ccc; /* Grey background color for buttons */
+            background-color: rgba(204, 204, 204, 0.6); /* Faint grey background */
             color: blue; /* Blue text color */
             padding: 10px;
             font-size: 16px;
@@ -163,11 +163,11 @@
 
                         questionHTML += `
                             <div class="question-frame" id="${questionId}" style="display:none;">
-                                <h2>${question.innerHTML}</h2>
+                                <h2>Aufgabe ${index + 1}</h2>
                                 ${question.nextElementSibling.outerHTML}
                                 <div class="buttons">
-                                    <button onclick="showHint('${hintId}')">Show Hint</button>
-                                    <button onclick="showSolution('${solutionId}')">Show Lösung</button>
+                                    <button onclick="showHint('${hintId}')">Hinweis anzeigen</button>
+                                    <button onclick="showSolution('${solutionId}')">Lösung anzeigen</button>
                                 </div>
                                 <div id="${hintId}" class="hint-frame hint">${hint.nextElementSibling.outerHTML}</div>
                                 <div id="${solutionId}" class="solution-frame solution">${solution.nextElementSibling.outerHTML}</div>
