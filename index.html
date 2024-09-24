@@ -6,7 +6,7 @@
     <title>PHY1 Interactive Questions</title>
 
     <!-- Load MathJax for rendering LaTeX equations -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> or maybe you can change the latex file in order that this html code can show everything properly 
 
     <style>
         body {
@@ -136,54 +136,48 @@
         let currentQuestion = 1;
         let totalQuestions = 0;
 
-       // Load questions from Week1_questions.html
-function loadQuestions() {
-    fetch('Week1_questions.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data, 'text/html');
+        // Load questions from Week1_questions.html
+        function loadQuestions() {
+            fetch('Week1_questions.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
 
-            const questions = doc.querySelectorAll('h2[id^="question"]');
-            let questionHTML = '';
+                    const questions = doc.querySelectorAll('h2[id^="question"]');
+                    let questionHTML = '';
 
-            questions.forEach((question, index) => {
-                const questionId = `question${index + 1}`;
-                const hintId = `hint${index + 1}`;
-                const solutionId = `solution${index + 1}`;
+                    questions.forEach((question, index) => {
+                        const questionId = question${index + 1};
+                        const hintId = hint${index + 1};
+                        const solutionId = solution${index + 1};
 
-                const hint = doc.querySelector(`#hint-${index + 1}`);
-                const solution = doc.querySelector(`#solution-${index + 1}`);
+                        const hint = doc.querySelector(#hint-${index + 1});
+                        const solution = doc.querySelector(#solution-${index + 1});
 
-                questionHTML += `
-                    <div class="question-frame" id="${questionId}" style="display:none;">
-                        <h2>${question.innerHTML}</h2>
-                        ${question.nextElementSibling.outerHTML}
-                        <div class="buttons">
-                            <button onclick="showHint('${hintId}')">Show Hint</button>
-                            <button onclick="showSolution('${solutionId}')">Show Lösung</button>
-                        </div>
-                        <div id="${hintId}" class="hint-frame hint">${hint ? hint.innerHTML : ''}</div>
-                        <div id="${solutionId}" class="solution-frame solution">${solution ? solution.innerHTML : ''}</div>
-                    </div>
-                `;
-            });
+                        questionHTML += 
+                            <div class="question-frame" id="${questionId}" style="display:none;">
+                                <h2>${question.innerHTML}</h2>
+                                ${question.nextElementSibling.outerHTML}
+                                <div class="buttons">
+                                    <button onclick="showHint('${hintId}')">Show Hint</button>
+                                    <button onclick="showSolution('${solutionId}')">Show Lösung</button>
+                                </div>
+                                <div id="${hintId}" class="hint-frame hint">${hint.nextElementSibling.outerHTML}</div>
+                                <div id="${solutionId}" class="solution-frame solution">${solution.nextElementSibling.outerHTML}</div>
+                            </div>
+                        ;
+                    });
 
-            document.getElementById('questionsContainer').innerHTML = questionHTML;
-            totalQuestions = questions.length;
-            updateQuestionDisplay();
+                    document.getElementById('questionsContainer').innerHTML = questionHTML;
+                    totalQuestions = questions.length;
+                    updateQuestionDisplay();
 
-            // Ensure MathJax processes any equations
-            MathJax.typesetPromise().catch((err) => console.log(err.message));
-        })
-        .catch(error => console.error('Error fetching questions:', error));
-}
-
+                    // Ensure MathJax processes any equations
+                    MathJax.typeset();
+                })
+                .catch(error => console.error('Error fetching questions:', error));
+        }
 
         function showQuestions() {
             document.getElementById('week1').style.display = 'block';
@@ -204,11 +198,11 @@ function loadQuestions() {
 
         function updateQuestionDisplay() {
             for (let i = 1; i <= totalQuestions; i++) {
-                const questionElement = document.getElementById(`question${i}`);
+                const questionElement = document.getElementById(question${i});
                 questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
             }
 
-            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
+            document.getElementById('questionNumber').innerText = ${currentQuestion}/${totalQuestions};
             document.getElementById('prevBtn').disabled = (currentQuestion === 1);
             document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
         }
