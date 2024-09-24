@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHY1 Interactive Questions</title>
+
+    <!-- Load MathJax for rendering LaTeX equations -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
-        /* General page layout */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,7 +18,6 @@
             height: 100vh;
         }
 
-        /* Title styling */
         .title {
             text-align: center;
             font-size: 24px;
@@ -23,7 +25,6 @@
             margin-top: 20px;
         }
 
-        /* Question box styling */
         .question-box {
             background-color: #f9f9f9;
             padding: 20px;
@@ -36,13 +37,10 @@
             border: 2px solid #ccc;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-            display: none; /* Hidden initially */
+            display: none;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
         }
 
-        /* Black frame for question, hint, and solution */
         .question-frame, .hint-frame, .solution-frame {
             border: 2px solid black;
             padding: 20px;
@@ -67,9 +65,8 @@
             cursor: pointer;
         }
 
-        /* Navigation positioned at the bottom of the page */
         .navigation {
-            display: none; /* Initially hidden */
+            display: none;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
@@ -96,22 +93,18 @@
             margin-top: 20px;
         }
 
-        /* Initially hidden */
         .hidden {
             display: none;
         }
 
-        /* Initially hide the hint and solution */
         .hint, .solution {
             display: none;
         }
 
-        /* Link to show Week 1 */
         .link {
             margin-top: 20px;
-            margin-left: 20px; /* Move to the very left */
+            margin-left: 20px;
             font-size: 20px;
-            text-align: left; /* Align left */
             cursor: pointer;
             text-decoration: underline;
             color: blue;
@@ -123,23 +116,16 @@
 </head>
 <body>
 
-    <!-- Bold title at the top -->
     <div class="title">PHY1</div>
-
-    <!-- Link to Week 1 -->
     <div class="link" id="week1Link" onclick="showQuestions()">Woche 2</div>
 
-    <!-- Question box for Week 1 -->
     <div id="week1" class="question-box">
-        <h2>Physik Grundlagen</h2>  
-        <div id="questionsContainer">
-            <!-- Questions will be dynamically loaded here -->
-        </div>
+        <h2>Physik Grundlagen</h2>
+        <div id="questionsContainer"></div>
     </div>
 
-    <!-- Navigation Buttons at the bottom -->
     <div class="navigation">
-        <span id="questionNumber" class="current-question">1/2</span>
+        <span id="questionNumber" class="current-question">1/5</span>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
             <button id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -150,15 +136,14 @@
         let currentQuestion = 1;
         let totalQuestions = 0;
 
-        // Function to load questions from Week1_questions.html
+        // Load questions from Week1_questions.html
         function loadQuestions() {
             fetch('Week1_questions.html')
                 .then(response => response.text())
                 .then(data => {
-                    // Parse the fetched HTML and extract questions, hints, and solutions
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-                    
+
                     const questions = doc.querySelectorAll('h2[id^="question"]');
                     let questionHTML = '';
 
@@ -167,39 +152,38 @@
                         const hintId = `hint${index + 1}`;
                         const solutionId = `solution${index + 1}`;
 
-                        const questionText = question.outerHTML + question.nextElementSibling.outerHTML;
-                        const hintText = question.nextElementSibling.nextElementSibling.outerHTML;
-                        const solutionText = question.nextElementSibling.nextElementSibling.nextElementSibling.outerHTML;
+                        const hint = doc.querySelector(`#hint-${index + 1}`);
+                        const solution = doc.querySelector(`#solution-${index + 1}`);
 
                         questionHTML += `
                             <div class="question-frame" id="${questionId}" style="display:none;">
-                                ${questionText}
+                                <h2>${question.innerHTML}</h2>
+                                ${question.nextElementSibling.outerHTML}
                                 <div class="buttons">
                                     <button onclick="showHint('${hintId}')">Show Hint</button>
                                     <button onclick="showSolution('${solutionId}')">Show Lösung</button>
                                 </div>
-                                <div id="${hintId}" class="hint-frame hint">${hintText}</div>
-                                <div id="${solutionId}" class="solution-frame solution">${solutionText}</div>
+                                <div id="${hintId}" class="hint-frame hint">${hint.nextElementSibling.outerHTML}</div>
+                                <div id="${solutionId}" class="solution-frame solution">${solution.nextElementSibling.outerHTML}</div>
                             </div>
                         `;
                     });
 
                     document.getElementById('questionsContainer').innerHTML = questionHTML;
                     totalQuestions = questions.length;
-                    updateQuestionDisplay();  // Show the first question
+                    updateQuestionDisplay();
+
+                    // Ensure MathJax processes any equations
+                    MathJax.typeset();
                 })
                 .catch(error => console.error('Error fetching questions:', error));
         }
 
         function showQuestions() {
-            // Show the question box and navigation
             document.getElementById('week1').style.display = 'block';
             document.querySelector('.navigation').style.display = 'flex';
-            
-            // Hide the link after it's clicked
             document.getElementById('week1Link').style.display = 'none';
-            
-            updateQuestionDisplay();  // Show the first question
+            updateQuestionDisplay();
         }
 
         function showHint(hintId) {
@@ -237,15 +221,10 @@
             }
         }
 
-        // Initialize questions based on the generated HTML content
-        function initQuestions() {
-            loadQuestions();  // Fetch and load questions from external HTML file
-        }
-
-        // Call initQuestions on window load to set up the navigation
+        // Initialize and load questions
         window.onload = function() {
-            initQuestions();  // Load the questions on page load
-            document.querySelector('.navigation').style.display = 'none';  // Hide navigation initially
+            loadQuestions();
+            document.querySelector('.navigation').style.display = 'none';
         }
     </script>
 
