@@ -42,19 +42,16 @@
     <script>
         // Function to fetch Week1_questions.html and insert content
         function loadQuestions() {
-            // Fetch the Week1_questions.html file
             fetch('Week1_questions.html')
-                .then(response => response.text())
-                .then(data => {
-                    // Insert the HTML content into the #questions-container
-                    document.getElementById('questions-container').innerHTML = data;
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('questions-container').innerHTML = data;
+        if (window.MathJax) {
+            MathJax.typeset();  // Re-render MathJax equations after inserting content
+        }
+    })
+    .catch(error => console.error('Error fetching questions:', error));
 
-                    // Re-render MathJax equations
-                    if (window.MathJax) {
-                        MathJax.typeset();
-                    }
-                })
-                .catch(error => console.error('Error fetching questions:', error));
         }
 
         // Show and hide hint
