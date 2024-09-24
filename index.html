@@ -67,7 +67,7 @@
 
         // Function to fetch Week1_questions.html and split it into questions
         function loadQuestions() {
-            fetch('Week1-questions.html')
+            fetch('Week1_questions.html')
                 .then(response => response.text())
                 .then(data => {
                     // Create a DOMParser to parse the fetched HTML
@@ -119,7 +119,9 @@
         }
 
         // Function to show or hide questions on clicking "Woche2"
-        function toggleQuestions() {
+        function toggleQuestions(event) {
+            event.preventDefault();  // Prevent the default link behavior (page refresh or jumping)
+
             var container = document.getElementById('questions-container');
             if (container.style.display === "none") {
                 container.style.display = "block";  // Show the questions
@@ -136,7 +138,7 @@
 
     <!-- Add the navigation link at the top-left -->
     <div id="nav">
-        <a href="#" onclick="toggleQuestions()">Woche2</a>
+        <a href="#" onclick="toggleQuestions(event)">Woche2</a>
     </div>
 
     <!-- Questions container -->
