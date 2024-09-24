@@ -155,9 +155,9 @@
                         const hint = doc.querySelector(`#hint-${index + 1}`);
                         const solution = doc.querySelector(`#solution-${index + 1}`);
 
-                        // Check if hint and solution exist, to avoid null errors
-                        const hintContent = hint ? hint.nextElementSibling.outerHTML : "<p>No hint available.</p>";
-                        const solutionContent = solution ? solution.nextElementSibling.outerHTML : "<p>No solution available.</p>";
+                        // Ensure correct selection of next sibling for solution and hint
+                        const hintContent = hint ? getNextSibling(hint).outerHTML : "<p>No hint available.</p>";
+                        const solutionContent = solution ? getNextSibling(solution).outerHTML : "<p>No solution available.</p>";
 
                         questionHTML += `
                             <div class="question-frame" id="${questionId}" style="display:none;">
@@ -181,6 +181,15 @@
                     MathJax.typeset();
                 })
                 .catch(error => console.error('Error fetching questions:', error));
+        }
+
+        // Helper function to get the next sibling that is an element node
+        function getNextSibling(element) {
+            let sibling = element.nextElementSibling;
+            while (sibling && sibling.nodeType !== 1) {
+                sibling = sibling.nextElementSibling;
+            }
+            return sibling;
         }
 
         function showQuestions() {
