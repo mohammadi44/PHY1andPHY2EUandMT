@@ -1,118 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHY1 Interactive Questions</title>
-
-    <!-- Load MathJax for rendering LaTeX equations -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .question-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin-top: 60px;
-            flex-grow: 1;
-            max-width: 900px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            border: 2px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            display: none;
-            flex-direction: column;
-        }
-
-        .question-frame, .hint-frame, .solution-frame {
-            border: 2px solid black;
-            padding: 20px;
-            background-color: white;
-            margin-top: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .hint {
-            font-style: italic;
-            color: #666;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        .navigation {
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #f9f9f9;
-            border-top: 2px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .current-question {
-            font-weight: bold;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .hint, .solution {
-            display: none;
-        }
-
-        .link {
-            margin-top: 20px;
-            margin-left: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            text-decoration: underline;
-            color: blue;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-    </style>
 </head>
 <body>
 
@@ -137,28 +22,61 @@
         let totalQuestions = 0;
 
         // Load questions from Week1_questions.html
+function loadQuestions() {
+    fetch('Week1_questions.html')
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            const questions = doc.querySelectorAll('h2[id^="question"]');
+            let questionHTML = '';
+            questions.forEach((question, index) => {
+                const questionId = `question${index + 1}`;
+                const hintId = `hint${index + 1}`;
+                const solutionId = `solution${index + 1}`;
+                const hint = doc.querySelector(`#hint-${index + 1}`);
+                const solution = doc.querySelector(`#solution-${index + 1}`);
+                // Check if hint and solution exist, to avoid null errors
+                const hintContent = hint ? hint.nextElementSibling.outerHTML : "<p>No hint available.</p>";
+                const solutionContent = solution ? solution.nextElementSibling.outerHTML : "<p>No solution available.</p>";
+                questionHTML += `
+                    <div class="question-frame" id="${questionId}" style="display:none;">
+                        <h2>${question.innerHTML}</h2>
+                        ${question.nextElementSibling.outerHTML}
+                        <div class="buttons">
+                            <button onclick="showHint('${hintId}')">Show Hint</button>
+                            <button onclick="showSolution('${solutionId}')">Show Lösung</button>
+                        </div>
+                        <div id="${hintId}" class="hint-frame hint">${hintContent}</div>
+                        <div id="${solutionId}" class="solution-frame solution">${solutionContent}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('questionsContainer').innerHTML = questionHTML;
+            totalQuestions = questions.length;
+            updateQuestionDisplay();
+            // Ensure MathJax processes any equations
+            MathJax.typeset();
+        })
+        .catch(error => console.error('Error fetching questions:', error));
+}
         function loadQuestions() {
             fetch('Week1_questions.html')
                 .then(response => response.text())
                 .then(data => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-
                     const questions = doc.querySelectorAll('h2[id^="question"]');
                     let questionHTML = '';
-
                     questions.forEach((question, index) => {
                         const questionId = `question${index + 1}`;
                         const hintId = `hint${index + 1}`;
                         const solutionId = `solution${index + 1}`;
-
                         const hint = doc.querySelector(`#hint-${index + 1}`);
                         const solution = doc.querySelector(`#solution-${index + 1}`);
-
-                        // Ensure correct selection of next sibling for solution and hint
-                        const hintContent = hint ? getNextSibling(hint).outerHTML : "<p>No hint available.</p>";
-                        const solutionContent = solution ? getNextSibling(solution).outerHTML : "<p>No solution available.</p>";
-
+                        // Check if hint and solution exist, to avoid null errors
+                        const hintContent = hint ? hint.nextElementSibling.outerHTML : "<p>No hint available.</p>";
+                        const solutionContent = solution ? solution.nextElementSibling.outerHTML : "<p>No solution available.</p>";
                         questionHTML += `
                             <div class="question-frame" id="${questionId}" style="display:none;">
                                 <h2>${question.innerHTML}</h2>
@@ -172,74 +90,13 @@
                             </div>
                         `;
                     });
-
                     document.getElementById('questionsContainer').innerHTML = questionHTML;
                     totalQuestions = questions.length;
                     updateQuestionDisplay();
-
                     // Ensure MathJax processes any equations
                     MathJax.typeset();
                 })
                 .catch(error => console.error('Error fetching questions:', error));
         }
 
-        // Helper function to get the next sibling that is an element node
-        function getNextSibling(element) {
-            let sibling = element.nextElementSibling;
-            while (sibling && sibling.nodeType !== 1) {
-                sibling = sibling.nextElementSibling;
-            }
-            return sibling;
-        }
-
         function showQuestions() {
-            document.getElementById('week1').style.display = 'block';
-            document.querySelector('.navigation').style.display = 'flex';
-            document.getElementById('week1Link').style.display = 'none';
-            updateQuestionDisplay();
-        }
-
-        function showHint(hintId) {
-            const hint = document.getElementById(hintId);
-            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function showSolution(solutionId) {
-            const solution = document.getElementById(solutionId);
-            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function updateQuestionDisplay() {
-            for (let i = 1; i <= totalQuestions; i++) {
-                const questionElement = document.getElementById(`question${i}`);
-                questionElement.style.display = (i === currentQuestion) ? 'block' : 'none';
-            }
-
-            document.getElementById('questionNumber').innerText = `${currentQuestion}/${totalQuestions}`;
-            document.getElementById('prevBtn').disabled = (currentQuestion === 1);
-            document.getElementById('nextBtn').disabled = (currentQuestion === totalQuestions);
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                updateQuestionDisplay();
-            }
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                updateQuestionDisplay();
-            }
-        }
-
-        // Initialize and load questions
-        window.onload = function() {
-            loadQuestions();
-            document.querySelector('.navigation').style.display = 'none';
-        }
-    </script>
-
-</body>
-</html>
