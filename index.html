@@ -64,27 +64,8 @@
 
     <h1>Week 1 Questions</h1>
 
-    <!-- Insert the HTML content generated from LaTeX below -->
-    <div class="question-frame">
-        <p><strong>Aufgabe:</strong> Solve the equation:</p>
-        <p>\( y = mx + b \)</p> <!-- LaTeX equation -->
-        
-        <div class="buttons">
-            <button onclick="showHint('hint1')">Show Hint</button>
-        </div>
-        <div id="hint1" class="hint">
-            <p><strong>Hint:</strong> Recall that \( m \) is the slope of the line.</p>
-        </div>
-
-        <div class="buttons">
-            <button onclick="showSolution('solution1')">Show Solution</button>
-        </div>
-        <div id="solution1" class="solution">
-            <p><strong>Solution:</strong> The equation can be solved by substituting values of \( m \) and \( b \).</p>
-        </div>
-    </div>
-
-    <!-- Repeat for more questions, hints, and solutions -->
+    <!-- Insert the dynamically generated HTML content below -->
+    {{content}} <!-- This will be replaced with the HTML from Week1_questions.html -->
 
 </body>
 </html>
