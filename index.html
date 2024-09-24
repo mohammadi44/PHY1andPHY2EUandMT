@@ -10,7 +10,7 @@
     <script id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <style>
+    <style>. the problem here was that question box size should reduce to have left and right marginal gap 
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -24,12 +24,10 @@
         }
 
         .question-frame {
-            width: 60%;  /* Adjust the width for left and right margin */
-            margin: 0 auto 30px auto;  /* Center the content horizontally */
+            margin-bottom: 30px;
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #fff;
         }
 
         .hint, .solution {
@@ -48,7 +46,6 @@
 
         #questions-container {
             display: none; /* Initially hidden */
-            text-align: center;
         }
     </style>
 
@@ -89,7 +86,7 @@
     </div>
 
     <!-- Questions container -->
-    <div id="questions-container" class="question-frame">
+    <div id="questions-container">
         <!-- The content from Week1_questions.html will be dynamically loaded here -->
     </div>
 
