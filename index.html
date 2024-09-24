@@ -13,7 +13,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
         }
 
         /* Style for the link at the top-left */
@@ -24,10 +30,12 @@
         }
 
         .question-frame {
-            margin-bottom: 30px;
-            padding: 15px;
+            width: 60%;  /* Restrict the width */
+            margin: 30px auto;
+            padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
+            background-color: white;
         }
 
         .hint, .solution {
@@ -36,40 +44,86 @@
         }
 
         .buttons {
-            margin-top: 10px;
+            margin-top: 20px;
+            text-align: right;
         }
 
         button {
             padding: 8px 12px;
             cursor: pointer;
+            margin-left: 10px;
         }
 
         #questions-container {
             display: none; /* Initially hidden */
+            text-align: center;
         }
+
     </style>
 
     <script>
-        // Function to fetch Week1_questions.html and insert content
+        let currentQuestionIndex = 0;
+        let questions = [];  // Array to hold all question elements
+
+        // Function to fetch Week1_questions.html and split it into questions
         function loadQuestions() {
-            fetch('Week1-questions.html')
+            fetch('Week1_questions.html')
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('questions-container').innerHTML = data;
-                    if (window.MathJax) {
-                        MathJax.typeset();
-                    }
+                    // Create a DOMParser to parse the fetched HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    // Collect all questions based on <h2> elements
+                    questions = Array.from(doc.querySelectorAll('h2[id^="question"]')).map(q => {
+                        return {
+                            question: q.outerHTML + q.nextElementSibling.outerHTML,
+                            hint: q.nextElementSibling.nextElementSibling.outerHTML,
+                            solution: q.nextElementSibling.nextElementSibling.nextElementSibling.outerHTML
+                        };
+                    });
+
+                    // Display the first question
+                    displayQuestion(currentQuestionIndex);
                 })
                 .catch(error => console.error('Error fetching questions:', error));
         }
 
-        // Function to show or hide questions
+        // Function to display a specific question by index
+        function displayQuestion(index) {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = questions[index].question + questions[index].hint + questions[index].solution;
+            if (window.MathJax) {
+                MathJax.typeset();  // Re-render MathJax equations after inserting content
+            }
+
+            // Show or hide the buttons based on index
+            document.getElementById('prevButton').style.display = index === 0 ? 'none' : 'inline-block';
+            document.getElementById('nextButton').style.display = index === questions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        // Function to go to the next question
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        // Function to go to the previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        // Function to show or hide questions on clicking "Woche2"
         function toggleQuestions() {
             var container = document.getElementById('questions-container');
-            if (container.style.display === "none" || container.style.display === "") {
+            if (container.style.display === "none") {
                 container.style.display = "block";  // Show the questions
-            } else {
-                container.style.display = "none";  // Hide the questions
+                displayQuestion(0);  // Show the first question
             }
         }
 
@@ -86,8 +140,12 @@
     </div>
 
     <!-- Questions container -->
-    <div id="questions-container">
+    <div id="questions-container" class="question-frame">
         <!-- The content from Week1_questions.html will be dynamically loaded here -->
+        <div class="buttons">
+            <button id="prevButton" style="display:none;" onclick="prevQuestion()">Previous</button>
+            <button id="nextButton" style="display:none;" onclick="nextQuestion()">Next</button>
+        </div>
     </div>
 
 </body>
