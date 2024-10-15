@@ -177,6 +177,17 @@
             font-weight: bold;
         }
 
+        /* Inline CSS to center images */
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        figure, .centered-image {
+            text-align: center;
+        }
+
         /* Media query for smaller screens */
         @media (max-width: 800px) {
             .links {
@@ -304,6 +315,17 @@
             // Add titles for other weeks if necessary
         };
 
+        // Function to collect all content until the next question, hint, or solution
+        function getContentUntilNext(element) {
+            let content = '';
+            let sibling = element.nextElementSibling;
+            while (sibling && !(sibling.tagName === 'H2' && sibling.id && sibling.id.startsWith('question')) && !(sibling.id && (sibling.id.startsWith('hint-') || sibling.id.startsWith('solution-')))) {
+                content += sibling.outerHTML;
+                sibling = sibling.nextElementSibling;
+            }
+            return content;
+        }
+
         // Load questions from WeekX_questions.html
         function loadQuestions(weekNumber) {
             currentWeek = weekNumber; // Set the current week
@@ -333,16 +355,25 @@
                         const hint = doc.querySelector(`#hint-${index + 1}`);
                         const solution = doc.querySelector(`#solution-${index + 1}`);
 
+                        // Get the content of the question
+                        const questionContent = getContentUntilNext(question);
+
+                        // Get the content of the hint
+                        const hintContent = hint ? getContentUntilNext(hint) : '';
+
+                        // Get the content of the solution
+                        const solutionContent = solution ? getContentUntilNext(solution) : '';
+
                         questionHTML += `
                             <div class="question-frame" id="${questionId}" style="display:none;">
                                 <h2>Aufgabe ${index + 1}</h2>
-                                ${question.nextElementSibling ? question.nextElementSibling.outerHTML : ''}
+                                ${questionContent}
                                 <div class="buttons">
                                     <button class="hint-btn" data-hint-id="${hintId}">Hinweis anzeigen</button>
                                     <button class="solution-btn" data-solution-id="${solutionId}">Lösung anzeigen</button>
                                 </div>
-                                <div id="${hintId}" class="hint-frame hint">${hint && hint.nextElementSibling ? hint.nextElementSibling.outerHTML : ''}</div>
-                                <div id="${solutionId}" class="solution-frame solution">${solution && solution.nextElementSibling ? solution.nextElementSibling.outerHTML : ''}</div>
+                                <div id="${hintId}" class="hint-frame hint">${hintContent}</div>
+                                <div id="${solutionId}" class="solution-frame solution">${solutionContent}</div>
                             </div>
                         `;
                     });
