@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Woche9</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 class="unnumbered" id="woche-9-aufgaben">Woche 9 Aufgaben</h1>
+<h2 class="unnumbered" id="question-1">Question 1</h2>
+<p><span class="math inline">\(\star\star\)</span>Bei Gewitter werden
+Elektronen in einem Blitzkanal im elektrischen Feld der Atmosphäre mit
+<span class="math inline">\(a=2\times 10^{17}m/s^2\)</span>
+beschleunigt. Ihre mittlere freie Weglänge beträgt unter
+Normalbedingungen etwa <span class="math inline">\(L=5 \times
+10^{-5}\)</span> m. Nach dieser Strecke stossen sie auf ein Luftmolekül
+und werden gestoppt, um danach durch das Feld wieder beschleunigt zu
+werden. Wie lange dauert es ungefähr, bis ein Blitz die Strecke von
+einem Kilometer zurückgelegt hat?</p>
+<h2 class="unnumbered" id="hint-1">Hint 1</h2>
+<p>Berechnen Sie die Zeit, die es braucht, um unter der gegebenen
+Beschleunigung den Weg <span class="math inline">\(L\)</span>
+zurückzulegen.<br />
+Wie viele solcher Stösse sind erforderlich?<br />
+Damit können Sie dann die Zeit berechnen.</p>
+<h2 class="unnumbered" id="solution-1">Solution 1</h2>
+<p>Typische Physiker Abschätzung, die Bewegung eines Blitzes lässt sich
+nicht in eine Formel fassen. Trotzdem können wir vernünftige Werte
+abschätzen.<br />
+Es treten hohe Beschleunigungen auf. Die Regeln der Kinematik gelten
+aber auch hier, wir können mit Elektronen rechnen wie mit Bällen.<br />
+Wir haben eine konstante Beschleunigung und können daraus Ort und
+Geschwindigkeit berechnen <span class="math display">\[\begin{aligned}
+    a(t) &amp;= a_0 = \text{konst.} \\
+    v(t) &amp;= \int a(t) \, dt = a_0 t + v_0 \\
+    x(t) &amp;= \int v(t) \, dt = \frac{1}{2} a_0 t^2 + v_0 t + x_0
+\end{aligned}\]</span><br />
+Wir beginnen bei jedem Stoss von vorne, die Anfangsgeschwindigkeit und
+der Anfangsort sind deshalb jedesmal 0: <span
+class="math display">\[\begin{aligned}
+    a(t) &amp;= a_0 = \text{konst.} \\
+    v(t) &amp;= \int a(t) \, dt = a_0 t \\
+    x(t) &amp;= \int v(t) \, dt = \frac{1}{2} a_0 t^2
+\end{aligned}\]</span><br />
+Das Elektron legt eine mittlere Strecke L zurück bis zum nächsten Stoss,
+daraus erhalten wir die Zeit zwischen zwei Stössen<br />
+<span class="math display">\[L=\sfrac{1}{2}a_0t^2\Rightarrow
+t=\sqrt{2\sfrac{L}{a_0}}=2\cdot{10}^{-11}\mathrm{s}\]</span> Um einen
+Kilometer zurückzulegen, muss es <span
+class="math inline">\(N=1000\:\sfrac{\mathrm{m}}{L}=2\times10^7\)</span>
+Stösse machen.<br />
+Die Zeit für einen Kilometer wird dann <span
+class="math inline">\(T=Nt=(2\times10^7)\times({2\times10^{-11}})=0.4\times10^{-3}\mathrm{s}\)</span>
+Das Elektron braucht etwa eine halbe Tausendstelsekunde, um einen
+Kilometer zurückzulegen.</p>
+<h2 class="unnumbered" id="question-2">Question 2</h2>
+<p><span class="math inline">\(\star\star\)</span>Ein geladenes Ion
+bewegt sich im Vakuum kräftefrei mit der Geschwindigkeit <span
+class="math inline">\(v_0=2\:\text{km/s}\)</span> längs der x-Achse. An
+der Position <span class="math inline">\(x_0 = 3.0\:\text{mm}\)</span>
+tritt es zur Zeit <span class="math inline">\(t_0 = 0\)</span> in ein
+zeitabhängiges elektrisches Gegenfeld ein und bewegt sich mit der
+Beschleunigung <span class="math inline">\(a=b·t\)</span> weiter, wobei
+<span class="math inline">\(b = -0.75\times10^{15} m/s^3\)</span>.<br />
+a) Skizzieren Sie das a-t Diagramm einschliesslich <span
+class="math inline">\(t&lt;0\)</span> .<br />
+b) Berechnen Sie die Funktionsgleichung <span
+class="math inline">\(v(t)\)</span> für <span
+class="math inline">\(t&gt;0\)</span> mit der entsprechenden
+Anfangsbedingung.<br />
+c) Berechnen Sie die Funktionsgleichung <span
+class="math inline">\(x(t)\)</span> für <span
+class="math inline">\(t&gt;0\)</span> mit der entsprechenden
+Anfangsbedingung.<br />
+d) Zu welcher Zeit <span class="math inline">\(t_U\)</span> ändert sich
+die Bewegungsrichtung?<br />
+e) Wo ist der Umkehrort <span class="math inline">\(x_U\)</span>?<br />
+f) Skizzieren Sie das v-t-Diagramm einschliesslich <span
+class="math inline">\(t&lt;0\)</span><br />
+g) Skizzieren Sie das x-t-Diagramm einschliesslich <span
+class="math inline">\(t&lt;0\)</span><br />
+</p>
+<h2 class="unnumbered" id="hint-2">hint 2</h2>
+<p>Typisches Problem der Kinematik, Beschleunigung,
+Anfangsgeschwindigkeit und Anfangsort (Zeit 0) gegeben.<br />
+Beachten Sie die nicht-konstante Beschleunigung!</p>
+<h2 class="unnumbered" id="solution-2">Solution 2</h2>
+<p><strong>a)<span class="math inline">\(a-t\)</span>
+Diagramm</strong><br />
+<br />
+Für <span class="math inline">\(t&lt;0\)</span> ist <span
+class="math inline">\(a=0\)</span>. Die Geschwindigkeit des Teilchens
+ist konstant. Danach lineare Abnahme mit Steigung <span
+class="math inline">\(-b\)</span><br />
+<br />
+<br />
+<strong>b)<span class="math inline">\(v-t\)</span></strong><br />
+<br />
+Die Geschwindigkeit ist das Integral der Beschleunigung über die Zeit.
+<span class="math display">\[v(t)=\int a(t)dt=\int
+btdt=\sfrac{1}{2}bt^2+v_0\]</span><br />
+<br />
+<strong>c)<span class="math inline">\(x-t\)</span></strong><br />
+<br />
+Der Ort ist das Integral der Geschwindigkeit über die Zeit. <span
+class="math display">\[x(t)=\int
+v(t)dt=\int(\sfrac{1}{2}bt^2+v_0)dt=1/2\times1/3bt^3+v_0t+x_0\]</span><br />
+<br />
+<strong>d)Richtungsumkehr</strong><br />
+<br />
+Bei der Richtungsumkehr ist <span class="math inline">\(v=0\)</span>:
+<span class="math display">\[0=\sfrac{1}{2}bt^2+v_0\Rightarrow
+t_{Umkehr}=\sqrt{\frac{-2v_0}{b}}=2.31\times{10}^{-6}s\]</span><br />
+<br />
+<strong>e)Umkehrort</strong><br />
+<br />
+Umkehrzeit aus d) einsetzen bei c) mit <span
+class="math inline">\(v_0\)</span> und <span
+class="math inline">\(x_0\)</span> aus Aufgabenstellung: <span
+class="math inline">\(x_U = 6.08 mm\)</span><br />
+<br />
+<br />
+<strong>f, g)<span class="math inline">\(x-t\)</span>,<span
+class="math inline">\(v-t\)</span> Diagramm</strong><br />
+<br />
+</p>
+<figure id="fig:92">
+<p><img src="92.png" style="width:100.0%" alt="image" /> <span
+id="fig:92" data-label="fig:92"></span></p>
+</figure>
+<div class="flushleft">
+<p>Die gerade hellblaue Linie zeigt die Lösung für <span
+class="math inline">\(t &lt; 0\)</span>.<br />
+Die dünne gekrümmte Linie stellt die Lösungsfunktion für alle Zeiten
+dar, ohne die Einschränkung konstanter Geschwindigkeit für <span
+class="math inline">\(t &lt; 0\)</span>.</p>
+</div>
+<h2 class="unnumbered" id="question-3">Question 3</h2>
+<p><span class="math inline">\(\star\)</span>Ein Fahrzeug der Masse
+<span class="math inline">\(m\)</span> steht mit angezogener Handbremse
+auf einer stark abschüssigen Strasse, die um den Winkel <span
+class="math inline">\(\alpha\)</span> gegen die Waagerechte geneigt ist.
+a) Berechnen Sie die resultierende Kraft, sog. "Hangabtriebskraft" (die
+Vektorsumme aus Gewichts und Normalkraft)<br />
+b) Warum bewegt sich das Fahrzeug unter dem Einfluss der
+Hangabtriebskraft nicht abwärts?<br />
+c) Berechnen Sie unter Verwendung der Newtonschen Bewegungsgleichung,
+wie gross die Reibungskraft sein muss. Was wäre der maximale Winkel, an
+dem das Fahrzeug noch stehen bleibt?</p>
+<h2 class="unnumbered" id="hint-3">hint 3</h2>
+<p>a) Schauen Sie auf der Folie Kräfte am Hang nach.<br />
+b) Es muss eine entgegengesetzte kompensierende Kraft geben. Welche?</p>
+<h2 class="unnumbered" id="solution-3">Solution 3</h2>
+<p>a) Die Summe von Gewichts- und Normalkraft zeigt parallel zum Boden
+(das Auto sinkt nicht ein), ihr Betrag ist <span class="math inline">\(F
+= m g \sin \alpha\)</span><br />
+b) Die maximale Haftreibungskraft ist grösser als die Gravitationskraft
+und die wirkende Haftreibungskraft kompensiert deshalb die Kraft
+parallel zum Hang.<br />
+<br />
+c) Keine Beschleunigung, d.h. reultierende Kraft 0, die wirkende
+Reibungskraft ist somit gleich <span class="math inline">\(F = m g \sin
+\alpha\)</span> hanaufwärts.<br />
+Maximale Haftreibungskraft &gt; Kraft parallel zum Hang: <span
+class="math inline">\(m
+g  \cos\alpha\:\mu_{Haft}&gt;m\:g\:\sin\alpha\)</span><br />
+<br />
+Aufgelöst nach dem Haftreibungskoeffizienten: <span
+class="math inline">\(\mu_{Haft}&gt;\frac{\sin\alpha}{\cos\alpha}=\tan\alpha\)</span><br />
+<br />
+Der Haftreibungskoeffizient muss grösser sein als der Tangens des
+Neigungswinkels. Die Steigung von Strassen ist oft in Prozent angegeben,
+das entspricht gerade dem Tangens. Bei einer sehr steilen Strasse mit 10
+% Neigung muss also <span class="math inline">\(\mu_\text{Haft} &gt;
+0.1\)</span> sein.</p>
+<h2 class="unnumbered" id="question-4">Question 4</h2>
+<p><span class="math inline">\(\star\)</span>Eine mittlere Antriebskraft
+von 800 N wirkt während einiger Zeit auf ein Fahrzeug, dessen Masse 1100
+kg beträgt.<br />
+a) Berechnen Sie die Strecke, die das Fahrzeug auf horizontaler Strasse
+in 5 s zurücklegt.<br />
+b) Welche Geschwindigkeit hat es dann?</p>
+<h2 class="unnumbered" id="hint-4">hint 4</h2>
+<p>Einfacher Fall einer gleichmässig beschleunigten Bewegung.</p>
+<h2 class="unnumbered" id="solution-4">Solution 4</h2>
+<p><strong>Hemdsärmlige Lösung</strong> <span
+class="math display">\[\begin{aligned}
+    &amp;\text{a)} \quad a = \frac{F}{m} = \frac{800}{1100} = 0.73 \,
+\frac{\text{m}}{\text{s}^2}\quad \, s = \frac{1}{2} a t^2 = \frac{1}{2}
+\frac{F}{m} t^2 = 9.09 \, \text{m} \\
+    &amp;\text{b)} \quad v = at = \frac{F}{m} t = \frac{800}{1100} \cdot
+5 = 3.63 \, \text{m/s}
+\end{aligned}\]</span><br />
+<strong>Systematische Lösung nach Schema</strong><br />
+(1) Betrachten das Auto<br />
+(2) Koordinatensystem entlang der Strasse in Fahrtrichtung<br />
+(3) Kräfte sind Antriebskraft, Gewichts und Normalkraft<br />
+(4) Die Resultierende Kraft ist die Summe aller Kräfte. Gewichts und
+Normalkraft heben sich auf, vertikal wirkt keine Kraft, das Fahrzeug
+bewegt sich nicht vertikal. Es bleibt die Antriebskraft.<br />
+Die Antriebskraft wirkt vom Auto auf die Strasse, die Gegenkraft der
+Strasse auf das Auto treibt das Auto an.<br />
+(5) Die Kraft ist konstant. Daraus erhalten wir <span
+class="math inline">\(a, v, x\)</span><br />
+<span class="math display">\[\begin{aligned}
+    \vec{a} &amp;= \frac{\vec{F}}{m} = \text{const.} \\
+    \vec{v} &amp;= \int \vec{a} \, dt = \frac{\vec{F}}{m} t + \vec{v}_0
+\\
+    \vec{x} &amp;= \int \vec{v} \, dt = \frac{1}{2} \frac{\vec{F}}{m}
+t^2 + \vec{v}_0 t + \vec{x}_0
+\end{aligned}\]</span> (6) Anfangsbedingungen: Das Auto startet aus der
+Ruhe am Ort 0: <span class="math display">\[\begin{aligned}
+    \vec{a} &amp;= \frac{\vec{F}}{m} = \text{const.} \\
+    \vec{v} &amp;= \int \vec{a} \, dt = \frac{\vec{F}}{m} t\\
+    \vec{x} &amp;= \int \vec{v} \, dt = \frac{1}{2} \frac{\vec{F}}{m}
+t^2
+\end{aligned}\]</span> Lösung (a): In Gleichung für <span
+class="math inline">\(x\)</span> einsetzen<br />
+Lösung (b): In Gleichung für <span class="math inline">\(v\)</span>
+einsetzen</p>
+<h2 class="unnumbered" id="question-5">Question 5</h2>
+<p><span class="math inline">\(\star\star\)</span>Ein Klotz liegt auf
+dem Boden. Wählen Sie für Klotz und Boden verschiedene Farben.<br />
+a) Zeichnen Sie die Gewichtskraft <span
+class="math inline">\(F_G\)</span> ein, mit der die Erde den Klotz
+anzieht.<br />
+b) Wechselwirkungskräfte: Zeichnen Sie nun die Kraft <span
+class="math inline">\(F_{KB}\)</span> des Klotzes auf den Boden und die
+Gegenkraft <span class="math inline">\(F_{BK}\)</span> des Bodens auf
+den Klotz ein. Dabei bedeutet K Klotz und B Boden. Diese Kräfte sind
+Kraft und Gegenkraft. Sie greifen an verschiedenen Körpern an und
+genügen dem Wechselwirkungsgesetz.<br />
+c) Welche Kräfte greifen am Klotz an? Woran erkennt man, dass diese
+Kräfte sich genau aufheben?<br />
+d) Wo greift die Gegenkraft zur Gewichtskraft des Klotzes an?</p>
+<h2 class="unnumbered" id="hint-5">hint 5</h2>
+<p>Denken Sie an die Eigenschaften von actio-reactio Paaren.</p>
+<h2 class="unnumbered" id="solution-5">Solution 5</h2>
+<figure id="fig:95">
+<p><img src="95.png" style="width:50.0%" alt="image" /> <span
+id="fig:95" data-label="fig:95"></span></p>
+</figure>
+<p>a+b) siehe Skizze<br />
+c) Gewichtskraft nach unten, die Kraft des Bodens <span
+class="math inline">\(F_{BK}\)</span> nach oben. Der Klotz bewegt sich
+nicht, es gibt deshalb keine resultierende Kraft, die Vektorsumme <span
+class="math inline">\(\vec{F_G}+\vec{F_{BK}}=0\)</span><br />
+d) Die Gravitationskraft Klotz auf Erde als Gegenkraft zur Gewichtskraft
+(Gravitation Erde auf Klotz) kann man sich im Zentrum der Erdkugel
+befestigt denken. Jedes Atom der Erde zieht natürlich am Klotz, aus
+Symmetriegründen ist das äquivalent zu einem Massepunkt im Zentrum der
+Erde.</p>
+<h2 class="unnumbered" id="question-6">Question 6</h2>
+<p><span class="math inline">\(\star\star\)</span>Ein Fahrzeug wird im
+Gebirge aus einer engen Kurve geschleudert und stürzt <span
+class="math inline">\(h=48\)</span> m in die Tiefe.<br />
+Die Aufschlagstelle liegt von der Absturzstelle horizontal gemessen
+<span class="math inline">\(L=52\)</span> m entfernt.<br />
+Ist die Ursache des Unfalls ein Überschreiten der Höchstgeschwindigkeit
+von 40 km/h gewesen?<br />
+Skizze mit Bezeichnungen und Koordinatensystem, Rechnung.</p>
+<h2 class="unnumbered" id="hint-6">hint 6</h2>
+<p>Stichwort Horizontaler Wurf</p>
+<h2 class="unnumbered" id="solution-6">Solution 6</h2>
+<p><strong>Zwei Lösungswege</strong><br />
+Beide Lösungswege liefern dasselbe Ergebnis. Der zweite ist formaler und
+schult das Denken besser.<br />
+<br />
+<strong>Lösung Ralph Markendorf</strong><br />
+Fallzeit für 48 m : <span class="math inline">\(t=3.13\)</span> s (siehe
+unten) Daraus Wurfweite <span class="math inline">\(3.13 \times 40/3.6 =
+34.8\)</span> m. Mit 40 km/h wäre das Fahrzeug nur ca. 35 m weit
+geflogen.<br />
+<br />
+<strong>Allgemeinerer Ansatz mit dem Schema</strong><br />
+Wir kennen die folgenden Anfangsbedingungen<br />
+Setzen Sie den Anfangspunkt auf der Straße: <span
+class="math display">\[\vec{r}_0 = (0, 0) \quad \text{und} \quad
+\vec{v}_0 = (v_{0x}, 0)\]</span> Der Aufschlagpunkt zur Zeit <span
+class="math inline">\(t_1\)</span> ist: <span
+class="math display">\[\vec{r}(t_1) = (+52, -48 \, \text{m})\]</span>
+Die Beschleunigung ist: <span class="math display">\[\vec{a} = (0,
+-g)\]</span> <strong>1-Was betrachten wir?</strong><br />
+Das Auto<br />
+<strong>2-Koordinatensystem</strong><br />
+Wählen ein Koordinatensystem mit y gegen oben, x in
+Fahr/Flugrichtung<br />
+Ursprung am Boden, wo das Auto aufprallt<br />
+<strong>3-Kräfte</strong><br />
+Es wirkt nur die Gewichtskraft<br />
+<strong>4-Resultierende Kraft</strong> <span
+class="math display">\[\vec{F}_{\text{Res}} = \vec{F}_G = m
+\vec{g}\]</span><br />
+<strong>5-Bewegungsgleichung</strong> <span
+class="math display">\[\vec{a} = \frac{\vec{F}_{\text{Res}}}{m} =
+\vec{g}\]</span> <strong>6-Lösung</strong> <span
+class="math display">\[\begin{aligned}
+    v &amp;= \int a \, dt = gt + v_0 \\
+    \vec{r} &amp;= \int v \, dt = \frac{1}{2}gt^2 + v_0 t + \vec{r}_0
+\end{aligned}\]</span> <strong>7-Anfangsbedingungen</strong> <span
+class="math display">\[\vec{g} = (0, -9.81) \, \text{m/s}^2, \quad
+\vec{v}_0 = |\vec{v}_0|(1, 0), \quad \vec{r}_0 = (0, h)\]</span>
+Einsetzen in Lösung:<br />
+<br />
+<strong>Flugzeit, Aufschlag zur Zeit <span
+class="math inline">\(t_1\)</span>:</strong><br />
+<br />
+In y-Richtung:<span class="math inline">\(r_y(t_1) =
+\frac{1}{2}(-9.81)t_1^2 + 0 + h \stackrel{!}{=} 0\)</span> Daraus <span
+class="math inline">\(t_1\)</span>.<br />
+In x-Richtung:<span class="math inline">\(r_x(t_1) = |\vec{v}_0|
+t_1\)</span>, <span class="math inline">\(t_1\)</span> von oben, daraus
+<span class="math inline">\(v_0\)</span>.<br />
+<span class="math inline">\(t_1 = 3.13 \, \text{Sekunden}, \quad v_0 =
+16.6 \, \text{m/s} = 59.8 \, \text{km/h}\)</span><br />
+Ja, die Geschwindigkeit wurde deutlich überschritten.</p>
+<h2 class="unnumbered" id="question-7">Question 7</h2>
+<p><span class="math inline">\(\star\star\)</span>Betrachten Sie den
+Schlitten auf der schiefen Ebenen in der Skizze unten. Dieser steht
+still (a) oder wird mit konstanter Geschwindigkeit <span
+class="math inline">\(v\)</span> nach oben gezogen (b).<br />
+Zeichnen Sie für beide Situationen alle auf den Schlitten wirkenden
+Kräfte in den Bildern ein und bezeichnen Sie die Kräfte sinnvoll.<br />
+Geben Sie für die Situation a) den Vektor der Reibungskraft an, in b)
+die Seilkraft.</p>
+<figure id="fig:97">
+<p><img src="97.png" style="width:50.0%" alt="image" /> <span
+id="fig:97" data-label="fig:97"></span></p>
+</figure>
+<h2 class="unnumbered" id="hint-7">hint 7</h2>
+<p>Thema Kräfte am Hang, Schiefe Ebene mit trockener Reibung</p>
+<h2 class="unnumbered" id="solution-7">Solution 7</h2>
+<p>In beiden Fällen wirkt die Gewichtskraft nach unten und die
+Normalkraft von der Unterlage senkrecht nach oben.<br />
+In beiden Fällen ändert sich die Geschwindigkeit nicht: Bei a) ist sie
+konstant null, bei b) konstant <span class="math inline">\(v\)</span>.
+In x-Richtung gibt es deshalb keine resultierende Kraft.<br />
+Bei a) wirkt hangabwärts in negativer x-Richtung eine Kraft <span
+class="math inline">\(F_x=-mg \sin\alpha\)</span>. Um die resultierende
+Kraft in x-Richtung zum Verschwinden zu bringen, braucht es hangaufwärts
+eine Haftreibungskraft <span class="math inline">\(F_{Haft,x}=+mg
+\sin\alpha\)</span>. Ihre y-Komponente ist null.<br />
+Bei b) wirkt hangabwärts in negativer x-Richtung zusätzlich eine
+Gleitreibungskraft: <span class="math inline">\(F_x=-(mg
+\sin\alpha+F_N\mu)=-mg (\sin\alpha+\cos\alpha\mu)\)</span>. Weil die
+Geschwindigkeit konstant ist, muss die Zugkraft im Seil gerade das
+Negative dieser Kraft sein: <span
+class="math inline">\(F_{Zug}=+mg(\sin\alpha+\cos\alpha\mu)\)</span></p>
+<h2 class="unnumbered" id="question-8">Question 8</h2>
+<p><span class="math inline">\(\star\star\)</span>Für ein Auto der Masse
+<span class="math inline">\(m\)</span> mit Allradantrieb beträgt <span
+class="math inline">\(\mu_H\)</span> = 0.7.<br />
+a) Wie gross ist die maximale Beschleunigung <span
+class="math inline">\(a_max\)</span> beim Anfahren auf ebener
+Strasse?<br />
+b) Wir nehmen jetzt an, auf dem Mond gäbe es eine Strasse, ähnlich wie
+auf der Erde. Ist die höchstmögliche Beschleunigung auf dem Mond die
+gleiche wie auf der Erde?<br />
+c) Das Auto sei jetzt anstelle des Allradantriebes mit Frontantrieb
+ausgestattet. Bei der Behandlung der Reibung haben wir gesehen, dass die
+Haftreibungskraft unabhängig von der Grösse der Berührungsfläche ist.
+Bedeutet das, dass sich durch Umstellung auf Frontantrieb die maximal
+mögliche Beschleunigung nicht ändert?</p>
+<h2 class="unnumbered" id="hint-8">hint 8</h2>
+<p>a) Welche Kraft beschleunigt das Auto? Sie muss von der Strasse auf
+das Auto wirken,<br />
+b) Welcher Parameter in der Reibungskraft ist spezifisch für die
+Erde?<br />
+c) Denken Sie an der Normalkraft.</p>
+<h2 class="unnumbered" id="solution-8">Solution 8</h2>
+<p>(a)Die Beschleunigung ist: <span class="math inline">\(F = a
+m\)</span><br />
+Die maximale Kraft des Bodens auf die Reifen ist die maximale
+Haftreibungskraft <span
+class="math display">\[mg_E\:\mu_{Haft}=a_{max}\:m\Rightarrow
+a_{Max}=g_E\:\mu_{Haft}\]</span> (b) Auf dem Mond ist die
+Gravitationsfeldstärke <span class="math inline">\(g_M\)</span> kleiner
+als die Gravitationsfeldstärke <span class="math inline">\(g_E\)</span>
+auf der Erde.<br />
+Damit sind auch die Normalkraft und die Reibung kleiner. (Grenzfall:
+Ohne Gravitation gibt es gar keine Normalkraft und Haftreibung, aber die
+zu beschleunigende Masse bleibt die gleiche.)<br />
+Die maximale Beschleunigung <span
+class="math display">\[a_{Max}=g_M\:\mu_{Haft}\]</span> ist deshalb um
+den Faktor <span
+class="math display">\[\sfrac{g_E}{g_M}\approx6\]</span> kleiner.<br />
+<br />
+(c) Mit Vorderrad-Antrieb trägt nur die Normalkraft der vorderen Räder
+zur Reibungskraft bei. Das ist rund die Hälfte. Allradantrieb bringt
+mehr Reibungskraft vom Boden auf die Räder.</p>
+<h2 class="unnumbered" id="question-9">Question 9</h2>
+<p><span class="math inline">\(\star\star\star\)</span>Ein Staubsauger
+mit dem Gewicht <span class="math inline">\(F_G\)</span> wird einmal
+geschoben und einmal gezogen. Der Koeffizient für das Gleiten auf dem
+Boden betrage <span class="math inline">\(\mu_\text{Gl}\)</span>.<br />
+(a) Mit welcher Schubkraft <span class="math inline">\(F_S\)</span> muss
+mindestens unter dem Winkel <span class="math inline">\(\alpha\)</span>
+gegen den Staubsauger gedrückt werden, damit das Gleiten
+aufrechterhalten bleibt?<br />
+(b) Mit welcher Zugkraft <span class="math inline">\(F_Z\)</span> muss
+der Staubsauger unter dem Winkel <span
+class="math inline">\(\alpha\)</span> mindestens gezogen werden, damit
+das Gleiten aufrechterhalten bleibt? Vergleichen Sie mit (a). Warum ist
+das Ziehen leichter als das Schieben?</p>
+<h2 class="unnumbered" id="hint-9">hint 9</h2>
+<p>Zerlegen Sie die Schub- bzw- Zugkraft in ihre Komponenten parallel
+und senkrecht zur Oberfläche. Eine Skizze ist hilfreich.<br />
+Berechnen Sie damit die Gleitreibungskraft. Achtung! Normalkraft ist
+nicht nur <span class="math inline">\(m g\)</span><br />
+Stellen Sie dann eine Bedingung für die Gleitreibungskraft und die
+Horizontalkomponente der Zug/Schubkraft auf, damit der Staubsauger mit
+konstanter Geschwindigkeit gleitet.</p>
+<h2 class="unnumbered" id="solution-9">Solution 9</h2>
+<figure id="fig:99">
+<p><img src="99.png" style="width:60.0%" alt="image" /> <span
+id="fig:99" data-label="fig:99"></span></p>
+</figure>
+<p><strong>Stossen</strong><br />
+Die Kraft <span class="math inline">\(F\)</span> stösst unter dem Winkel
+<span class="math inline">\(\alpha\)</span> von links oben. Die
+Normalkraft des Bodens auf den Schlitten setzt sich zusammen aus der
+Gewichtskraft des Schlittens und der vertikalen Komponente der Kraft
+<span class="math inline">\(F:F_N=F_G+F \sin\alpha.\)</span><br />
+Die Reibungskraft ist dann <span class="math inline">\(F_R=F_N\mu=(F_G+F
+\sin\alpha)\mu.\)</span><br />
+Die Komponente vorwärts (parallel zum Boden) der Kraft <span
+class="math inline">\(F\)</span> muss gerade gleich dieser Reibungskraft
+sein, damit der Staubsauger mit konstanter Geschwindigkeit fährt: <span
+class="math inline">\(F \cos\alpha\geq F_R=F_N\mu=(F_G+F
+\sin\alpha)\mu.\)</span><br />
+Diesen Ausdruck können wir nach <span class="math inline">\(F\)</span>
+auflösen: <span class="math inline">\(F\geq\frac{F_G\mu}{\cos\alpha-\mu
+\sin\alpha}\)</span><br />
+Mit steigendem Winkel wird die Kraft immer grösser und unendlich, wenn
+der Nenner null wird.<br />
+<strong>Ziehen</strong><br />
+Beim Ziehen gibt es eine Komponente von <span
+class="math inline">\(F\)</span> nach oben, die Normalkraft wird
+kleiner.<br />
+Die Bedingung wird <span class="math inline">\(F \cos\alpha\geq
+F_R=F_N\mu=(F_G-F \sin\alpha)\mu.\)</span><br />
+Aufgelöst nach <span
+class="math inline">\(F\geq\frac{F_G\mu}{\cos\alpha+\mu
+\sin\alpha}.\)</span><br />
+Der Nenner ist beim Ziehen immer grösser als beim Stossen und es braucht
+deshalb weniger Kraft zum Ziehen als zum Stossen.</p>
+<h2 class="unnumbered" id="question-10">Question 10</h2>
+<p><span class="math inline">\(\star\star\star\star\)</span>Hagelkörner
+werden durch Aufwinde immer wieder in höhere und kältere Luftschichten
+getragen, wobei sich kleinere Wassertröpfchen anlagern und
+gefrieren.<br />
+Schätzen Sie die Windgeschwindigkeiten ab, die bei der Entstehung von
+Hagelkörnern von der Grösse eines Hühnereies (r = 2 cm) geherrscht
+haben</p>
+<h2 class="unnumbered" id="hint-10">hint 10</h2>
+<p>Keine Aufgabe für eine Prüfung. Versuchen Sie die Gedanken direkt mit
+der Lösung nachzuvollziehen.</p>
+<h2 class="unnumbered" id="solution-10">Solution 10</h2>
+<p>Wir betrachten das Hagelkorn und wählen eine Koordinatenachse, die
+nach oben zeigt. Die resultierende Kraft auf das Hagelkorn ist <span
+class="math inline">\(\vec{F}_{\text{Res}} = \vec{F}_G +
+\vec{F}_{\text{Wind}}\)</span>.<br />
+Im Grenzfall ist die resultierende Kraft gerade <span
+class="math inline">\(0\)</span> <span class="math inline">\(\Rightarrow
+\vec{F}_G = -\vec{F}_{\text{Wind}}\)</span>.<br />
+Die Gewichtskraft ist <span class="math inline">\(\vec{F}_G = -mg =
+-\frac{4 \pi}{3} r^3 \rho_{\text{Eis}} g\)</span> (negativ, weil gegen
+Koordinatenachse).<br />
+Die Windreibung ist sicher turbulent. Dann ist die Windkraft auf das
+Hagelkorn <span class="math inline">\(|\vec{F}_{\text{Wind}}| =
+\frac{1}{2} \rho_A c_w v^2\)</span> (positiv, weil entlang
+Koordinatenachse).<br />
+Im Gleichgewicht: <span class="math display">\[\frac{1}{2} \rho (r^2
+\pi) c_w v^2 = \frac{4 \pi}{3} r^3 \rho_{\text{Eis}} g\]</span> Daraus
+die Geschwindigkeit <span class="math display">\[v = \sqrt{\frac{8/3 \,
+r \, \rho_{\text{Eis}} g}{\rho_{\text{Luft}} c_w}}\]</span> Eingesetzt
+mit Verhältnis Eis/Luft (bei <span class="math inline">\(0^\circ
+\text{C}\)</span>) = <span class="math inline">\(918 / 1.30 \sim
+706\)</span> und <span class="math inline">\(c_w = 0.15\)</span>: <span
+class="math inline">\(v = 50 \, \text{m/s} \sim 180 \,
+\text{km/h}\)</span>. Der numerische Wert der Lösung hängt von der Wahl
+der Luftdichte und von <span class="math inline">\(c_w\)</span> ab.</p>
+</body>
+</html>
