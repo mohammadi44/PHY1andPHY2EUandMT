@@ -413,11 +413,27 @@
                 })
                 .catch(error => {
                     console.error('Error fetching questions:', error);
-                    handleMissingWeek(weekNumber);
+                    // Try to fetch WocheX.png
+                    fetch(`Woche${weekNumber}.png`)
+                        .then(response => {
+                            if (response.ok) {
+                                // WocheX.png exists
+                                displayImageMessage(`Woche${weekNumber}.png`, '');
+                            } else {
+                                // WocheX.png does not exist
+                                displayImageMessage('under.png', `Wird in Woche ${weekNumber} hochgeladen`);
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Error fetching WocheX.png:', err);
+                            // Display under.png
+                            displayImageMessage('under.png', `Wird in Woche ${weekNumber} hochgeladen`);
+                        });
                 });
         }
 
-        function handleMissingWeek(weekNumber) {
+        // Function to display image and message when content is missing
+        function displayImageMessage(imageSrc, message) {
             // Replace the title with empty string
             document.getElementById('pageTitle').innerText = '';
             document.getElementById('weekTitle').style.display = 'none'; // Hide the week title inside the question box
@@ -429,8 +445,8 @@
             // Display the missing week message with image
             const missingWeekMessage = document.getElementById('missingWeekMessage');
             missingWeekMessage.innerHTML = `
-                <img src="under.png" alt="Under Construction">
-                <div>Wird in Woche ${weekNumber} hochgeladen</div>
+                <img src="${imageSrc}" alt="Missing Content">
+                ${message ? `<div>${message}</div>` : ''}
             `;
             missingWeekMessage.style.display = 'block';
 
@@ -443,6 +459,26 @@
 
             // Ensure the navigation bar is visible
             document.querySelector('.navigation').style.display = 'flex';
+        }
+
+        // Function to handle missing week content (can be removed if not needed)
+        function handleMissingWeek(weekNumber) {
+            // Try to fetch WocheX.png
+            fetch(`Woche${weekNumber}.png`)
+                .then(response => {
+                    if (response.ok) {
+                        // WocheX.png exists
+                        displayImageMessage(`Woche${weekNumber}.png`, '');
+                    } else {
+                        // WocheX.png does not exist
+                        displayImageMessage('under.png', `Wird in Woche ${weekNumber} hochgeladen`);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching WocheX.png:', err);
+                    // Display under.png
+                    displayImageMessage('under.png', `Wird in Woche ${weekNumber} hochgeladen`);
+                });
         }
 
         function bindButtonEvents() {
