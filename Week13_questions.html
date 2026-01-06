@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Woche13</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 class="unnumbered" id="woche-12-aufgaben">Woche 12 Aufgaben</h1>
+<h2 class="unnumbered" id="question-1">Question 1</h2>
+<p><span class="math inline">\(\star\star\star\)</span>a) Beweisen Sie
+für einen Federschwinger, der sich nach der Funktion <span
+class="math display">\[x(t) = x_0 \cos(\omega_0 t)\]</span> bewegt, dass
+zu jedem Zeitpunkt die Gesamtenergie konstant ist.<br />
+b) Wie groß ist diese Gesamtenergie, ausgedrückt durch <span
+class="math inline">\(x_0\)</span> und <span
+class="math inline">\(k\)</span>?</p>
+<h2 class="unnumbered" id="hint-1">Hint 1</h2>
+<p>Woraus setzt sich die Energie zusammen?<br />
+Aus potentieller Energie der Feder und kinetischer Energie. Die
+potentielle Energie der Feder können Sie nachschlagen. Die kinetische
+Energie berechnen Sie mit Hilfe der Geschwindigkeit. Da sie den Ort als
+Funktion der Zeit kennen, können Sie mit Hilfe der Kinematik die
+Geschwindigkeit ausrechnen, alles als eine Funktion der Zeit.</p>
+<h2 class="unnumbered" id="solution-1">Solution 1</h2>
+<p>Wir kennen die Bewegungsgleichung: <span class="math display">\[x(t)
+= x_0 \sin(\omega t), \quad v(t) = \frac{dx}{dt} = x_0 \omega
+\cos(\omega t)\]</span> Aus der Bewegungsgleichung erhalten wir die
+potenzielle und die kinetische Energie zu jedem Zeitpunkt <span
+class="math inline">\(t_0\)</span>. Dabei ist die potenzielle Energie
+die Arbeit, um die Feder gegen die Federkraft <span
+class="math inline">\(F = -k x\)</span> zu spannen: <span
+class="math display">\[E_{\text{kin}}(t_0) = \frac{1}{2} m v^2(t_0) =
+\frac{1}{2} m x_0^2 \omega^2 \cos^2(\omega t_0)\]</span> <span
+class="math display">\[E_{\text{pot}}(t_0) = \frac{1}{2} k x^2(t_0) =
+\frac{1}{2} k x_0^2 \sin^2(\omega t_0)\]</span> Die gesamte Energie ist
+die Summe der beiden: <span class="math display">\[E_{\text{tot}} =
+E_{\text{kin}} + E_{\text{pot}} = \frac{1}{2} m x_0^2 \omega^2
+\cos^2(\omega t_0) + \frac{1}{2} k x_0^2 \sin^2(\omega t_0)\]</span> Aus
+der Lösung der Schwingungsgleichung (siehe Vorlesung) kennen wir den
+Zusammenhang zwischen Federkonstante und Kreisfrequenz: <span
+class="math display">\[\omega = \sqrt{\frac{k}{m}}\]</span> Diesen
+Ausdruck für die Kreisfrequenz setzen wir bei der kinetischen Energie
+ein und erhalten schließlich: <span
+class="math display">\[E_{\text{kin}} + E_{\text{pot}} = \frac{1}{2}
+x_0^2 k \left(\sin^2(\omega t_0) + \cos^2(\omega t_0)\right) =
+\frac{1}{2} k x_0^2\]</span> Am Schluss nutzen wir, dass <span
+class="math inline">\(\sin^2 + \cos^2 = 1\)</span>. Die Summe von
+kinetischer und potenzieller Energie ist konstant.</p>
+<h2 class="unnumbered" id="question-2">Question 2</h2>
+<p><span class="math inline">\(\star\star\)</span></p>
+<ul>
+<li><p>Eine Last der Masse <span class="math inline">\(10 \,
+\text{t}\)</span> hängt an einer Laufkatze und wird mit der
+Geschwindigkeit <span class="math inline">\(1.0 \, \text{m/s}\)</span>
+horizontal bewegt.</p></li>
+<li><p>Der Schwerpunktabstand der Last vom Aufhängepunkt beträgt <span
+class="math inline">\(5.0 \, \text{m}\)</span>.</p></li>
+<li><p>Beim plötzlichen Bremsen der Laufkatze beginnt die Last zu
+schwingen.</p></li>
+</ul>
+<ol>
+<li><p>Wie hoch ist die höchste Beanspruchung (Zugkraft) des
+Seiles?</p></li>
+<li><p>Mit welcher Amplitude schwingt die Last?</p></li>
+</ol>
+<h2 class="unnumbered" id="hint-2">Hint 2</h2>
+<p>a) Betrachten Sie die Last: Welche Kräfte wirken auf sie, wenn sie
+anfängt zu schwingen? Um welche Bewegung handelt es sich?<br />
+Um eine Kreisbewegung.<br />
+b) Schauen Sie die Eigenfrequenz nach.<br />
+Schreiben Sie die Gleichung einer Schwingung auf, leiten Sie daraus die
+maximale Geschwindigkeit ab. Diese kennen Sie ja. Daraus sollten Sie
+dann die Amplitude der Schwingung (also max. Auslenkung) besteimmen
+können.</p>
+<h2 class="unnumbered" id="solution-2">Solution 2</h2>
+<p><strong>a) Belastung</strong> Gegeben: <span class="math display">\[m
+= 10 \, \text{t} = 1 \cdot 10^4 \, \text{kg}, \quad v = 1.0 \,
+\text{m/s}, \quad R = 5.0 \, \text{m}\]</span> Die Belastung <span
+class="math inline">\(F\)</span> setzt sich aus der Gewichtskraft und
+der Radialkraft zusammen: <span class="math display">\[F = mg + m
+\frac{v^2}{R}\]</span> Einsetzen der Werte: <span
+class="math display">\[F = m \left(g + \frac{v^2}{R} \right) = 10^4
+\left(9.81 + \frac{1.0^2}{5.0} \right) \, \text{N}\]</span> Berechnung:
+<span class="math display">\[F = 10^4 \cdot 10.01 = 102&#39;000 \,
+\text{N}\]</span> Die Radialkraft, die erforderlich ist, um die Masse
+auf der Kreisbahn zu halten, addiert sich zur Gewichtskraft der
+Last.<br />
+<strong>b) Amplitude</strong> Die Last schwingt, und wir bezeichnen den
+Auslenkwinkel mit <span class="math inline">\(\varphi(t)\)</span>. Die
+Kreisfrequenz des Fadenpendels ist gegeben durch: <span
+class="math display">\[\omega_0 = \sqrt{\frac{g}{R}} =
+\sqrt{\frac{9.81}{5.0}} = 1.41 \, \text{s}^{-1}\]</span> Die Bewegung
+wird beschrieben durch: <span class="math display">\[\varphi(t) =
+\varphi_0 \sin(\omega_0 t), \quad \omega(t) = \frac{d\varphi(t)}{dt} =
+\omega_0 \varphi_0 \cos(\omega_0 t)\]</span> Die
+Tangentialgeschwindigkeit ergibt sich aus der Winkelgeschwindigkeit:
+<span class="math display">\[v_T = \omega(t) R = R \omega_0 \varphi_0
+\cos(\omega_0 t)\]</span> Die Amplitude der Geschwindigkeit ist: <span
+class="math display">\[v_0 = R \omega_0 \varphi_0\]</span> Aufgelöst
+nach der Winkelamplitude <span class="math inline">\(\varphi_0\)</span>:
+<span class="math display">\[\varphi_0 = \frac{v_0}{R \omega_0}\]</span>
+Einsetzen der Werte: <span class="math display">\[\varphi_0 =
+\frac{1.0}{5.0 \cdot 1.41} = 0.141 \, \text{rad} =
+8.1^\circ\]</span></p>
+<p>Die maximale Auslenkung <span class="math inline">\(s\)</span> ergibt
+sich zu: <span class="math display">\[s = R \varphi_0 = 5.0 \, \text{m}
+\cdot 0.141 = 0.71 \, \text{m}\]</span></p>
+<h2 class="unnumbered" id="question-3">Question 3</h2>
+<p><span class="math inline">\(\star\)</span> Durch Anhängen einer Last
+der Masse <span class="math inline">\(m_{\text{Last}} = 1050 \,
+\text{kg}\)</span> an einen Kranhaken der Masse <span
+class="math inline">\(m_{\text{Haken}} = 60 \, \text{kg}\)</span> dehnt
+sich das Seil um die Strecke <span class="math inline">\(\Delta L = 32
+\, \text{mm}\)</span>. Mit welcher Frequenz kann die Last vertikale
+Schwingungen ausführen?</p>
+<h2 class="unnumbered" id="hint-3">Hint 3</h2>
+<p>Betrachten Sie das Seil wie eine Feder. Schlagen Sie die Formel für
+die Eigenfrequenz des Federschwingers nach.<br />
+Das benötigte k bestimmen Sie über das Hookesche Gesetz.</p>
+<h2 class="unnumbered" id="solution-3">Solution 3</h2>
+<p><em>Annahme:</em> Das Seil dehnt sich linear, daher gilt Hooke’s
+Gesetz: <span class="math display">\[k = \frac{F}{x} =
+\frac{mg}{x}\]</span> Einsetzen der Werte: <span
+class="math display">\[k = \frac{1050 \cdot 9.81}{32 \cdot 10^{-3}} =
+32.8 \cdot 10^5 \, \frac{\text{N}}{\text{m}}\]</span> Die Kreisfrequenz
+<span class="math inline">\(\omega\)</span> berechnet sich zu: <span
+class="math display">\[\omega = \sqrt{\frac{k}{m}} = \sqrt{\frac{mg}{x
+m}} = \sqrt{\frac{g}{x}}\]</span> Einsetzen der Werte: <span
+class="math display">\[\omega = \sqrt{\frac{9.81}{32 \cdot 10^{-3}}} =
+17.7 \, \text{s}^{-1}\]</span> Die Frequenz <span
+class="math inline">\(f\)</span> ist: <span class="math display">\[f =
+\frac{\omega}{2\pi} = \frac{17.7}{2\pi} = 2.81 \, \text{Hz}\]</span>
+<strong>Ergebnis:</strong> Die Last kann mit einer Frequenz von <span
+class="math inline">\(f = 2.81 \, \text{Hz}\)</span> vertikale
+Schwingungen ausführen.</p>
+<h2 class="unnumbered" id="question-4">Question 4</h2>
+<p><span class="math inline">\(\star\star\)</span> Ein Federschwinger
+führt eine harmonische (sinusförmige) Schwingung mit einer Amplitude von
+<span class="math inline">\(A_0 = 4.0 \, \text{cm}\)</span> aus. Er ist
+zu einem bestimmten Zeitpunkt <span class="math inline">\(x = 2.0 \,
+\text{cm}\)</span> von der Gleichgewichtslage entfernt. Welcher
+Bruchteil der Gesamtenergie ist hier potenzielle Energie?</p>
+<h2 class="unnumbered" id="hint-4">Hint 4</h2>
+<p>Berechnen Sie das Verhältnis der potentiellen Energie der gespannten
+Feder an den beiden Positionen.</p>
+<h2 class="unnumbered" id="solution-4">Solution 4</h2>
+<p>Wenn der Federschwinger voll um <span
+class="math inline">\(A_0\)</span> ausgelenkt ist, dann besitzt er nur
+potenzielle Energie: <span class="math display">\[E_{\text{tot}} =
+\frac{1}{2}kA_0^2.\]</span> Auf halbem Weg ist seine Energie: <span
+class="math display">\[E = \frac{1}{2}k\left(\frac{A_0}{2}\right)^2 =
+\frac{1}{2}k\frac{A_0^2}{4}.\]</span> Das Verhältnis ist: <span
+class="math display">\[\frac{E}{E_0} =
+\frac{\frac{1}{2}k\frac{A_0^2}{4}}{\frac{1}{2}kA_0^2} =
+\frac{1}{4}.\]</span> Bei halber Auslenkung ist <span
+class="math inline">\(\frac{1}{4}\)</span> der Energie in potenzieller
+Energie gespeichert und <span class="math inline">\(\frac{3}{4}\)</span>
+in kinetischer Energie.</p>
+<h2 class="unnumbered" id="question-5">Question 5</h2>
+<p><span class="math inline">\(\star\)</span> Der Ort eines bestimmten
+Teilchens ist gegeben durch: <span class="math display">\[x(t) = 7.0 \,
+\mathrm{cm} \cdot \cos(6\pi \, \mathrm{(1/s)} \, t),\]</span> wobei
+<span class="math inline">\(t\)</span> in Sekunden einzusetzen ist.
+Beantworten Sie die folgenden Fragen:</p>
+<ol>
+<li><p>Wie ist die Frequenz <span
+class="math inline">\(f\)</span>?</p></li>
+<li><p>Wie ist die Schwingungsdauer <span
+class="math inline">\(T\)</span>?</p></li>
+<li><p>Wie ist die Amplitude <span class="math inline">\(A_0\)</span>
+der Teilchenbewegung?</p></li>
+<li><p>Wann befindet sich das Teilchen zum ersten Mal nach <span
+class="math inline">\(t = 0\)</span> in seiner Gleichgewichtslage
+(schwingt durch den Nullpunkt)?</p></li>
+<li><p>In welche Richtung bewegt es sich zu diesem Zeitpunkt?</p></li>
+</ol>
+<h2 class="unnumbered" id="hint-5">Hint 5</h2>
+<p>a-c ablesen<br />
+d: Suchen Sie die erste Bedingung für Auslenkung, also <span
+class="math inline">\(x(t) = 0\)</span>.<br />
+e: Welche Grösse der Kinematik zeigt in Bewegungsrichtung? Bestimmen Sie
+diese und setzen den Zeitpunkt ein.</p>
+<h2 class="unnumbered" id="solution-5">Solution 5</h2>
+<ol>
+<li><p>Die Frequenz <span class="math inline">\(f\)</span> ergibt sich
+aus dem Argument des Kosinus, <span class="math inline">\(6\pi\)</span>
+<span class="math inline">\(\mathrm{(1/s)} = 2\pi f\)</span>. Daraus
+folgt: <span class="math display">\[f = \frac{6\pi}{2\pi} = 3 \,
+\mathrm{Hz}.\]</span></p></li>
+<li><p>Die Schwingungsdauer <span class="math inline">\(T\)</span> ist
+der Kehrwert der Frequenz: <span class="math display">\[T = \frac{1}{f}
+= \frac{1}{3} \, \mathrm{s} \approx 0.333 \,
+\mathrm{s}.\]</span></p></li>
+<li><p>Die Amplitude <span class="math inline">\(A_0\)</span> ist der
+Vorfaktor des Kosinus in der Gleichung: <span class="math display">\[A_0
+= 7.0 \, \mathrm{cm}.\]</span></p></li>
+<li><p>Das Teilchen befindet sich in der Gleichgewichtslage, wenn <span
+class="math inline">\(x(t) = 0\)</span>. Dies ist der Fall, wenn: <span
+class="math display">\[\cos(6\pi t) = 0.\]</span> Der Kosinus wird bei
+<span class="math inline">\((2n+1)\pi/2\)</span> für <span
+class="math inline">\(n \in \mathbb{Z}\)</span> gleich null. Für das
+erste Auftreten nach <span class="math inline">\(t = 0\)</span> setzen
+wir <span class="math inline">\(n = 0\)</span>: <span
+class="math display">\[6\pi t = \frac{\pi}{2} \implies t = \frac{1}{12}
+\, \mathrm{s} \approx 0.083 \, \mathrm{s}.\]</span></p></li>
+<li><p>Um die Bewegungsrichtung zu bestimmen, berechnen wir die
+Geschwindigkeit <span class="math inline">\(v(t)\)</span>: <span
+class="math display">\[v(t) = \frac{dx}{dt} = -7.0 \cdot 6\pi \,
+\mathrm{(1/s)} \cdot \sin(6\pi t).\]</span> Zum Zeitpunkt <span
+class="math inline">\(t = \frac{1}{12} \, \mathrm{s}\)</span>, haben
+wir: <span class="math display">\[v\left(\frac{1}{12}\right) = -7.0
+\cdot 6\pi \cdot \sin\left(6\pi \cdot \frac{1}{12}\right).\]</span> Da
+<span class="math inline">\(\sin(\pi/2) = 1\)</span>, folgt: <span
+class="math display">\[v\left(\frac{1}{12}\right) = -7.0 \cdot 6\pi
+\approx -131.9 \, \mathrm{cm/s}.\]</span> Die Geschwindigkeit ist
+negativ, daher bewegt sich das Teilchen in negativer Richtung.</p></li>
+</ol>
+<p><strong>Ergebnis:</strong></p>
+<ul>
+<li><p>Frequenz: <span class="math inline">\(f = 3 \,
+\mathrm{Hz}\)</span></p></li>
+<li><p>Schwingungsdauer: <span class="math inline">\(T \approx 0.333 \,
+\mathrm{s}\)</span></p></li>
+<li><p>Amplitude: <span class="math inline">\(A_0 = 7.0 \,
+\mathrm{cm}\)</span></p></li>
+<li><p>Zeit des ersten Durchgangs durch die Gleichgewichtslage: <span
+class="math inline">\(t \approx 0.083 \, \mathrm{s}\)</span></p></li>
+<li><p>Bewegungsrichtung: negativ.</p></li>
+</ul>
+<h2 class="unnumbered" id="question-6">Question 6</h2>
+<p><span class="math inline">\(\star\star\)</span></p>
+<ul>
+<li><p>Nach einer Spezifikation müssen elektronische Geräte
+Beschleunigungen bis zu <span class="math inline">\(10 \, g = 98.1 \,
+\mathrm{m/s^2}\)</span> aushalten (<span
+class="math inline">\(g\)</span> ist die Gravitationsfeldstärke der
+Erde).</p></li>
+<li><p>Um zu überprüfen, ob die Produkte Ihrer Firma diesen
+Anforderungen entsprechen, wollen Sie einen Rütteltisch verwenden, der
+ein Gerät bei verschiedenen Frequenzen und Amplituden einer
+sinusförmigen Beschleunigung aussetzt.</p></li>
+<li><p>Wie groß muss beim Test auf die Einhaltung der <span
+class="math inline">\(10 \, g\)</span>-Spezifizierung die Frequenz sein,
+wenn die Schwingungsamplitude <span class="math inline">\(A = 1.5 \,
+\mathrm{cm}\)</span> beträgt?</p></li>
+</ul>
+<h2 class="unnumbered" id="hint-6">Hint 6</h2>
+<p>Stellen Sie eine allgemeine Gleichung für <span
+class="math inline">\(x(t)\)</span> einer Schwingung auf und bestimmen
+Sie daraus die Beschleunigung. Suchen Sie danach die maximale
+Beschleunigung, die während der Schwingung auftritt. Damit können Sie
+die Frequenz bestimmen.</p>
+<h2 class="unnumbered" id="solution-6">Solution 6</h2>
+<p>Die maximale Beschleunigung eines harmonischen Oszillators ergibt
+sich aus: <span class="math display">\[a_{\text{max}} = \omega^2
+A,\]</span> wobei <span class="math inline">\(\omega\)</span> die
+Kreisfrequenz und <span class="math inline">\(A\)</span> die
+Schwingungsamplitude ist. Für <span
+class="math inline">\(\omega\)</span> gilt: <span
+class="math display">\[\omega = 2\pi f,\]</span> wobei <span
+class="math inline">\(f\)</span> die Frequenz ist. Einsetzen von <span
+class="math inline">\(\omega = 2\pi f\)</span> in die
+Beschleunigungsformel ergibt: <span
+class="math display">\[a_{\text{max}} = (2\pi f)^2 A = 4\pi^2 f^2
+A.\]</span></p>
+<p>Um <span class="math inline">\(f\)</span> zu bestimmen, lösen wir die
+Gleichung nach <span class="math inline">\(f\)</span> auf: <span
+class="math display">\[f = \sqrt{\frac{a_{\text{max}}}{4\pi^2
+A}}.\]</span></p>
+<p>Einsetzen der Werte: <span class="math display">\[a_{\text{max}} =
+98.1 \, \mathrm{m/s^2}, \quad A = 1.5 \, \mathrm{cm} = 0.015 \,
+\mathrm{m}.\]</span> <span class="math display">\[f =
+\sqrt{\frac{98.1}{4\pi^2 \cdot 0.015}}.\]</span> Berechnung: <span
+class="math display">\[f = \sqrt{\frac{98.1}{0.592}} = \sqrt{165.7}
+\approx 12.9 \, \mathrm{Hz}.\]</span> <strong>Ergebnis:</strong> Die
+Frequenz muss beim Test auf die Einhaltung der <span
+class="math inline">\(10 \, g\)</span>-Spezifizierung <span
+class="math inline">\(f \approx 12.9 \, \mathrm{Hz}\)</span>
+betragen.</p>
+<h2 class="unnumbered" id="question-7">Question 7</h2>
+<p><span class="math inline">\(\star\star\)</span>Eine Masse <span
+class="math inline">\(m\)</span> schwingt an zwei linearen Federn wie
+unten abgebildet. Die Masse <span class="math inline">\(m\)</span> und
+die beiden Federkonstanten <span class="math inline">\(k_{F1}\)</span>
+und <span class="math inline">\(k_{F2}\)</span> sind bekannt. Berechnen
+Sie für beide Fälle die Kreisfrequenz <span
+class="math inline">\(\omega\)</span> der Schwingung und die effektive
+Federkonstante <span class="math inline">\(k_{\text{eff}}\)</span>.</p>
+<figure id="fig:77">
+<p><img src="137.png" style="width:80.0%" alt="image" /> <span
+id="fig:77" data-label="fig:77"></span></p>
+</figure>
+<h2 class="unnumbered" id="hint-7">Hint 7</h2>
+<p>Parallel- oder Serienschaltung? Drücken Sie die Kraft in a) als
+Funktion der Auslenkung aus und in b) die Gesamtauslenkung als Funktion
+der Kraft. Aus dem effektiven <span class="math inline">\(k\)</span> und
+<span class="math inline">\(m\)</span> können Sie die Frequenz
+bestimmen.</p>
+<h2 class="unnumbered" id="solution-7">Solution 7</h2>
+<h2 class="unnumbered" id="fall-a">Fall (a)</h2>
+<p>1. <strong>Systembeschreibung</strong>: Zwei Federn mit
+Federkonstanten <span class="math inline">\(k_{F1}\)</span> und <span
+class="math inline">\(k_{F2}\)</span> sind parallel mit einer Masse
+<span class="math inline">\(m\)</span> verbunden.</p>
+<p>2. <strong>Effektive Federkonstante</strong>: <span
+class="math display">\[k_{\text{eff}} = k_{F1} + k_{F2}\]</span></p>
+<p>3. <strong>Kreisfrequenz</strong>: <span
+class="math display">\[\omega = \sqrt{\frac{k_{\text{eff}}}{m}} =
+\sqrt{\frac{k_{F1} + k_{F2}}{m}}\]</span></p>
+<h2 class="unnumbered" id="fall-b">Fall (b)</h2>
+<p>1. <strong>Systembeschreibung</strong>: Zwei Federn mit
+Federkonstanten <span class="math inline">\(k_{F1}\)</span> und <span
+class="math inline">\(k_{F2}\)</span> sind in Reihe mit einer Masse
+<span class="math inline">\(m\)</span> verbunden. Eine kleine Kugel
+(vernachlässigbare Masse) verbindet die beiden Federn.</p>
+<p>2. <strong>Effektive Federkonstante</strong>: <span
+class="math display">\[\frac{1}{k_{\text{eff}}} = \frac{1}{k_{F1}} +
+\frac{1}{k_{F2}}\]</span> <span class="math display">\[k_{\text{eff}} =
+\frac{k_{F1} \cdot k_{F2}}{k_{F1} + k_{F2}}\]</span></p>
+<p>3. <strong>Kreisfrequenz</strong>: <span
+class="math display">\[\omega = \sqrt{\frac{k_{\text{eff}}}{m}} =
+\sqrt{\frac{\frac{k_{F1} \cdot k_{F2}}{k_{F1} +
+k_{F2}}}{m}}\]</span></p>
+<h2 class="unnumbered" id="question-8">Question 8</h2>
+<p><span class="math inline">\(\star\star\)</span> Ein Holzklotz
+schwingt reibungsfrei an einer horizontalen Feder mit der Kreisfrequenz
+<span class="math inline">\(\omega_0\)</span>. Auf ihm liegt eine
+Holzplatte, die von dem Klotz mitgeführt wird. Die Haftreibungszahl
+zwischen beiden Holzkörpern ist <span
+class="math inline">\(\mu_H\)</span>.<br />
+Berechnen Sie die maximale Amplitude, bei der die aufliegende Holzplatte
+gerade noch nicht rutscht.</p>
+<h2 class="unnumbered" id="hint-8">Hint 8</h2>
+<p>Machen Sie eine Skizze.<br />
+Was bedeutet "nicht rutschen" für die Kraft, die die Platte
+beschleunigt? Wie gross kann sie maximal sein?<br />
+Wie hängt diese Kraft mit der Schwingung zusammen? Stellen Sie die
+Gleichung für die Auslenkung auf und berechnen Sie die Beschleunigung
+des Klotzes. Suchen Sie die maximale Beschleunigung. Damit haben Sie
+auch die maximale Kraft, die nötig ist, um die Platte zu beschleunigen.
+Diese darf maximal so gross sein, dass die Platte nicht rutscht.</p>
+<h2 class="unnumbered" id="solution-8">Solution 8</h2>
+<p>Die maximale Haftreibungskraft ist: <span class="math display">\[F_H
+= F_N \mu_H,\]</span> wobei <span class="math inline">\(F_N\)</span> die
+Normalkraft und <span class="math inline">\(\mu_H\)</span> der
+Haftreibungskoeffizient ist. Die Beschleunigung ist gegeben durch: <span
+class="math display">\[a = \ddot{x} = x_0 \omega^2 \sin(\omega t) = a_0
+\sin(\omega t) \implies a_0 = x_0 \omega^2.\]</span> Die maximale
+Trägheitskraft ist: <span class="math display">\[F_{\text{amax}} = m a_0
+= m x_0 \omega^2.\]</span> Damit die Haftreibungskraft ausreicht, gilt:
+<span class="math display">\[F_{\text{amax}} &lt; F_H \implies m x_0
+\omega^2 &lt; m g \mu_H.\]</span> Auflösen nach <span
+class="math inline">\(x_0\)</span>: <span class="math display">\[x_0
+&lt; \frac{g \mu_H}{\omega^2}.\]</span> Daraus folgt: Wenn <span
+class="math inline">\(\omega\)</span> wächst, wird <span
+class="math inline">\(x_0\)</span> immer kleiner.</p>
+<h2 class="unnumbered" id="question-9">Question 9</h2>
+<p><span class="math inline">\(\star\)</span> Ein Gegenstand mit einer
+Masse von <span class="math inline">\(m = 2 \, \mathrm{kg}\)</span> sei
+an einer horizontalen Feder mit der Federkonstanten <span
+class="math inline">\(k = 5000 \, \mathrm{N/m}\)</span> befestigt. Die
+Feder wird um <span class="math inline">\(x_0 = 10 \, \mathrm{cm} = 0.1
+\, \mathrm{m}\)</span> aus ihrer Ruhelage ausgelenkt und losgelassen.
+Die Feder ist masselos. Bestimmen Sie:</p>
+<ol>
+<li><p>die Frequenz <span class="math inline">\(f\)</span>,</p></li>
+<li><p>die Kreisfrequenz <span
+class="math inline">\(\omega\)</span>,</p></li>
+<li><p>die Schwingungsdauer <span
+class="math inline">\(T\)</span>,</p></li>
+<li><p>die Amplitude <span class="math inline">\(A\)</span>,</p></li>
+<li><p>die Maximalgeschwindigkeit <span
+class="math inline">\(v_{\text{max}}\)</span>,</p></li>
+<li><p>die Maximalbeschleunigung <span
+class="math inline">\(a_{\text{max}}\)</span>,</p></li>
+<li><p>wann der erste Durchgang durch die Ruhelage erfolgt und wie groß
+dann die Beschleunigung ist.</p></li>
+</ol>
+<h2 class="unnumbered" id="hint-9">Hint 9</h2>
+<p>Standard</p>
+<h2 class="unnumbered" id="solution-9">Solution 9</h2>
+<ol>
+<li><p>Aus der Lösung der Differenzialgleichung wissen wir: <span
+class="math display">\[\omega = \sqrt{\frac{k}{m}} = 50 \,
+\mathrm{s^{-1}}.\]</span></p></li>
+<li><p>Aufgelöst nach <span class="math inline">\(f\)</span> und <span
+class="math inline">\(T\)</span>: <span class="math display">\[f =
+\frac{\omega}{2\pi} = 7.96 \, \mathrm{Hz}, \quad T = \frac{1}{f} =
+\frac{2\pi}{\omega} = 0.13 \, \mathrm{s}.\]</span></p></li>
+<li><p>Die Amplitude ist die Anfangsauslenkung: <span
+class="math display">\[A = 10 \, \mathrm{cm}.\]</span></p></li>
+<li><p>Die Geschwindigkeit erhalten wir durch Ableiten der Ortsfunktion.
+Sie erreicht ihr Maximum, wenn der Sinus gleich <span
+class="math inline">\(-1\)</span> ist: <span class="math display">\[x(t)
+= x_0 \cos(\omega t), \quad v(t) = \frac{dx(t)}{dt} = -x_0 \omega
+\sin(\omega t).\]</span> Damit: <span class="math display">\[v_0 = x_0
+\omega = 5 \, \mathrm{m/s}.\]</span></p></li>
+<li><p>Die maximale Beschleunigung erhalten wir durch nochmaliges
+Ableiten: <span class="math display">\[x(t) = x_0 \cos(\omega t), \quad
+a(t) = \frac{d^2x(t)}{dt^2} = -x_0 \omega^2 \cos(\omega t).\]</span>
+Damit: <span class="math display">\[a_0 = x_0 \omega^2 = 250 \,
+\mathrm{\frac{m}{s^2}}.\]</span></p></li>
+<li><p>Der erste Durchgang durch die Ruhelage erfolgt nach einer
+Viertelperiode: <span class="math display">\[T/4 = 0.031 \,
+\mathrm{s}.\]</span> Der Phasenwinkel ist dort <span
+class="math inline">\(\omega t = 90^\circ\)</span>. Die Geschwindigkeit
+ist maximal und die Beschleunigung gleich null.</p></li>
+</ol>
+</body>
+</html>
